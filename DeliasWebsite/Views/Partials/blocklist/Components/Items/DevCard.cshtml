@@ -1,0 +1,61 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<DevCard>>
+@{
+    var skills = Model.Content.Skills;
+    var content = Model.Content;
+    var filters = Model.Content.Filters;
+}
+@if (skills?.Count() > 0)
+{
+    <div class="skill-category">
+        <div class="category-header">
+            <div class="category-icon">
+                <i class="@content.Icons"></i>
+            </div>
+            @if (!content.Title.IsNullOrWhiteSpace())
+            {
+                <h3 class="category-title">@content.Title</h3>
+            }
+            <br />
+           @*  @if (filters?.Count() > 0)
+            {
+                <div class="projects">
+                    <div class="container">
+                        <div class="filter-buttons">
+                            @foreach (var filter in filters)
+                            {
+                                <button class="filter-btn active">@filter.Name</button>
+                            }
+                        </div>
+                    </div>
+                </div> *@
+             @*    <div class="project-technologies">
+                    @foreach (var filter in filters)
+                    {
+                        <span class="tech-tag">@filter.Name</span>
+                    }
+                </div> *@
+        
+            @* }     *@
+        </div>
+        @if (!content.Description.IsNullOrWhiteSpace())
+        {
+            <p class="project-description">@Html.Raw(content.Description)</p>
+        }
+        else
+        {
+            <div class="skills-list">
+                @foreach (var skill in skills)
+                {
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">@skill.Content.Value("skillText")</span><span class="skill-percentage">@skill.Content.Value("percentage")%</span>
+                        </div><div class="skill-bar"><div class="skill-progress" style="width: @skill.Content.Value("percentage")%;"></div></div>
+                    </div>
+
+                }
+            </div>
+        }
+    </div>
+
+}
+

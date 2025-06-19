@@ -1,0 +1,37 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Card>>
+@{
+    var content = Model.Content;
+    var filters = content.Filters;
+    var imageUrl = content?.Image?.Url();
+}
+<div class="project-card">
+    <div class="project-image">
+        <img src="@imageUrl" alt="@content.Title" />
+    </div>
+    <div class="project-content">
+        <h3 class="project-title">@content.Title</h3>
+        <p class="project-description">@content.Description</p>
+        @if (filters?.Count() > 0)
+        {
+            <div class="project-technologies">
+                @foreach(var filter in filters)
+                {
+                    <span class="tech-tag">@filter.Name</span>
+                }              
+            </div>
+        }
+
+        @if (content.CardUrl != null || content.GitUrl != null)
+        {
+            <div class="project-links">
+                 @if (content.CardUrl != null){                   
+                    <a href="@content.CardUrl" target="_blank">Live Demo 🔗</a>
+                 }
+                @if (content.GitUrl != null)
+                {
+                    <a href="@content.GitUrl" target="_blank" class="secondary">Source Code 🐙</a>
+                }
+             </div>
+        }
+    </div>
+</div>

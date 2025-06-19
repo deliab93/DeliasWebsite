@@ -1,0 +1,78 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@using Umbraco.Cms.Web.Common.Extensions
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Extensions
+
+@{
+    var site = Model.Root();
+}
+
+<!DOCTYPE html>
+<html lang ="en" data-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@site?.Value("siteTitle")</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/theme-toggle.js"></script>
+    <script src="/js/shared.js"></script>
+
+</head>
+<body>
+    <div class="root">
+            @await Html.PartialAsync("Partials/_Header")
+            @RenderBody()
+            @await Html.PartialAsync("Partials/_Footer")
+    </div>
+</body>
+</html>
+<script>
+    (function () {
+      const root = document.documentElement;
+      let isDark;
+
+      function setTheme(isDark) {
+        if (isDark) {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          root.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+
+      function initThemeToggle() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+        setTheme(isDark);
+
+        document.querySelectorAll('.theme-toggle').forEach(btn => {
+          btn.addEventListener('click', () => {
+            isDark = !isDark;
+            setTheme(isDark);
+          });
+        });
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+          if (!localStorage.getItem('theme')) {
+            isDark = e.matches;
+            setTheme(isDark);
+          }
+        });
+      }
+
+      initThemeToggle();
+    })();
+</script>
+

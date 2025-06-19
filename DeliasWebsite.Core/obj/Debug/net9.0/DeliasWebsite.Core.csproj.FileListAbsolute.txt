@@ -1,0 +1,11 @@
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net9.0\DeliasWebsite.Core.deps.json
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net9.0\DeliasWebsite.Core.dll
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net9.0\DeliasWebsite.Core.pdb
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.AssemblyInfoInputs.cache
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.AssemblyInfo.cs
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.csproj.CoreCompileInputs.cache
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.dll
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\refint\DeliasWebsite.Core.dll
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\DeliasWebsite.Core.pdb
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net9.0\ref\DeliasWebsite.Core.dll

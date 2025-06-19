@@ -1,0 +1,46 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<TwoColumnSection>>
+@{
+    var content = Model?.Content;
+    var image = content?.Image;
+    var featureItems = content?.FeatureItems;
+}
+<section id="about" class="about">
+    <div class="container">
+        <div class="about-content">
+
+            <div class="about-image">
+                <div class="image-container">
+                    <div class="image-wrapper">
+                        <div class="image-overlay"></div>
+                        <img src="@image?.Url()"
+                             alt="@image?.Name" />
+                    </div>
+                    <div class="decorative-blob blob-1"></div>
+                </div>
+                <div class="decorative-blob-2"></div>
+            </div>
+
+            <div class="about-text">
+
+                <h2 class="about-title">
+                    @Html.Raw(content?.Title)
+                </h2>
+
+                <p class="about-description">
+                   @content?.Description
+                </p>
+
+                @if (featureItems?.Count() >0)
+                {
+                    <div class="features-grid">
+                        @foreach(var item in featureItems)
+                        {
+                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/featureItem.cshtml", item)
+                        }                      
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>

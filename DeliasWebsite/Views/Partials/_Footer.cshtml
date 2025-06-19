@@ -1,0 +1,125 @@
+﻿@inherits UmbracoViewPage
+@{
+    var site = Model.Root() as Home;
+    var footerSocials = site?.SocialMediaItems;
+}
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-grid">
+
+                <!-- Brand & Social -->
+                <div class="footer-section brand">
+                    <div class="footer-logo">
+                        <a href="@site.Url()"><span class="highlight">Dev</span>Portfolio</a>
+                    </div>
+                    @if (!string.IsNullOrEmpty(site?.Description))
+                    {
+                        <p class="footer-description">
+                            @site?.Description 
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="footer-description">
+                           Your go-to place for exceptional digital experiences. We create, innovate, and inspire through technology.
+                        </p>     
+                    }
+
+                    @if(footerSocials != null)
+                    {
+                        <div class="footer-social">
+                            @foreach (var item in footerSocials)
+                            {
+                                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                            }
+                        </div>
+                    }
+
+                </div>
+
+                <!-- Quick Links -->
+                @if (site?.QuickLinks != null)
+                {
+                    <div class="footer-section">
+                        <h3 class="footer-title">Quick Links</h3>
+                        <div class="footer-links">
+                            @foreach (var curPpage in site.QuickLinks)
+                            {
+                                <a href="@curPpage.Url">@curPpage.Name</a>
+                            }
+                        </div>
+                    </div>                
+                }
+
+
+                @if (site?.Services != null)
+                {
+                    <div class="footer-section">
+                        <h3 class="footer-title">Services</h3>
+                        <div class="footer-links">
+                            @foreach(var link in site?.Services)
+                            {
+                                <a href="#">@link</a>
+                            }                            
+                        </div>
+                    </div>
+                    
+                }
+
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-title">Contact</h3>
+                    <div class="footer-links">
+                        <div class="contact-item">
+                            <div class="contact-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="mailto:@site.ContactEmail">@site?.ContactEmail</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:@site?.ContactNumber">@site?.ContactNumber</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>@site?.Location</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 DevPortfolio. Made with
+                    <span class="heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </span>
+                    All rights reserved.
+                </p>
+
+                <button class="back-to-top">
+                    <span>Back to top</span>
+                  <i class="fa-solid fa-arrow-up"></i>   
+                </button>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const backToTopBtn = document.querySelector('.back-to-top');
+
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function () {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    });
+</script>

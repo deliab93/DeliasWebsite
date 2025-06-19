@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Cards>>
+@{
+    var cards = Model.Content.CardsList;
+}
+<div class="projects-grid">
+    @foreach (var card in cards)
+    {
+        @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/Card.cshtml", card)
+    }
+</div>

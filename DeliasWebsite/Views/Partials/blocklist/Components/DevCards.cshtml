@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<DevCards>>
+@{
+    var cards = Model.Content.ListOfCards;
+}
+<section class="skills">
+    <div class="container">
+        <div class="section-header">
+            @if (!Model.Content.Title.IsNullOrWhiteSpace())
+            {
+                <h2 class="section-title">@Html.Raw(Model.Content.Title)</h2>
+            }
+            @if (!string.IsNullOrEmpty(Model.Content.Intro))
+            {
+                <p class="section-description">@Model.Content.Intro</p>
+            }
+        </div>
+        <div class="skills-grid">
+            @foreach (var card in cards)
+            {
+                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/DevCard.cshtml", card)
+            }
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<FeatureItem>>
+<div class="feature-item">
+    <div class="feature-icon">
+        <i class="@Model?.Content?.Icon"></i>
+    </div>
+    <div class="feature-content">
+        <h3 class="feature-title">@Model?.Content?.Title</h3>
+        <p class="feature-description">@Model?.Content?.Description</p>
+    </div>
+</div>

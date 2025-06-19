@@ -1,0 +1,42 @@
+<header class="navbar transparent"> <!-- ⚠️ Add 'scrolled' class via JS on scroll -->
+  <div class="container navbar-content">
+    <a href="#" class="logo">
+      <span class="highlight">Dev</span>Portfolio
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="nav-desktop">
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- ⚠️ ThemeToggle Component needs replacement logic -->
+      <button class="theme-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun "><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+
+      <a href="#contact" class="btn btn-primary">Hire Me</a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="nav-mobile">
+      <button class="theme-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun "><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <!-- ⚠️ Swap this icon with Menu/X based on JS state -->
+        <svg width="24" height="24"><rect width="24" height="3" y="10" fill="#ccc" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary">Hire Me</a>
+  </div>
+</header>

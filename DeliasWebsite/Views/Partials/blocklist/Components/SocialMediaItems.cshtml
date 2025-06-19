@@ -1,0 +1,11 @@
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<SocialMediaItems>>
+@{
+    var items = Model.Content.SocialMediaItemsList;
+}
+@foreach (var item in items)
+{
+    @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+}
+

@@ -1,0 +1,26 @@
+.theme-toggle {
+  padding: var(--spacing-2);
+  border-radius: 50%;
+  background-color: var(--bg-tertiary);
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  [data-theme="dark"] & {
+    background-color: rgb(31, 41, 55);
+    color: rgb(209, 213, 219);
+
+    &:hover {
+      background-color: rgb(55, 65, 81);
+    }
+  }
+}

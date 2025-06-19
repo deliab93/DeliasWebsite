@@ -1,0 +1,102 @@
+.rte {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.75;
+  color: var(--text-primary);
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+  h5 { font-size: 1.125rem; }
+  h6 { font-size: 1rem; }
+
+  p {
+    margin-bottom: 1.25em;
+    color: var(--text-secondary);
+  }
+
+  a {
+    color: var(--primary-color);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--primary-hover);
+    }
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25em;
+  }
+
+  ul li::marker {
+    color: var(--primary-color);
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 1.5em 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin: 1em 0;
+  }
+
+  code, pre {
+    font-family: 'Courier New', monospace;
+    background-color: var(--bg-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  // Dark Theme Overrides
+  [data-theme="dark"] & {
+    color: var(--text-primary);
+
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-primary);
+    }
+
+    p {
+      color: var(--text-secondary);
+    }
+
+    a {
+      color: rgb(147, 197, 253);
+
+      &:hover {
+        color: rgb(191, 219, 254);
+      }
+    }
+
+    blockquote {
+      border-left-color: rgb(96, 165, 250);
+      color: rgb(209, 213, 219);
+    }
+
+    code, pre {
+      background-color: rgb(31, 41, 55);
+    }
+  }
+}

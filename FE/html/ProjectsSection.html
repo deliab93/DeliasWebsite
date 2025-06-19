@@ -1,0 +1,100 @@
+<!-- Include this in your HTML -->
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-badge">My Work</div>
+      <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+      <p class="section-description">
+        Explore my portfolio of projects that demonstrate my skills, problem-solving abilities, and attention to detail.
+        Each project represents unique challenges and solutions.
+      </p>
+    </div>
+
+    <div class="filter-buttons">
+      <button onclick="filterProjects('all')" class="filter-btn active">All Projects</button>
+      <button onclick="filterProjects('frontend')" class="filter-btn">Frontend</button>
+      <button onclick="filterProjects('fullstack')" class="filter-btn">Full Stack</button>
+      <button onclick="filterProjects('mobile')" class="filter-btn">Mobile</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid"></div>
+
+    <div class="more-projects">
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+        View More Projects on GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const projects = [
+    {
+      id: 1,
+      title: 'E-Commerce Platform',
+      description: 'A full-featured e-commerce platform...',
+      image: 'https://images.pexels.com/photos/38519/macbook-laptop-ipad-apple-38519.jpeg',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
+      category: 'fullstack',
+      liveLink: '#',
+      githubLink: '#',
+      featured: true
+    },
+    {
+      id: 2,
+      title: 'Task Management App',
+      description: 'A productivity application...',
+      image: 'https://images.pexels.com/photos/5313361/pexels-photo-5313361.jpeg',
+      technologies: ['React', 'Redux', 'Firebase', 'Material UI'],
+      category: 'frontend',
+      liveLink: '#',
+      githubLink: '#',
+      featured: true
+    },
+    // ... Add the rest of your projects here
+  ];
+
+  function renderProjects(projectsToRender) {
+    const container = document.getElementById('projectsGrid');
+    container.innerHTML = '';
+    projectsToRender.forEach(project => {
+      const techs = project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('');
+      container.innerHTML += `
+        <div class="project-card">
+          <div class="project-image">
+            <img src="${project.image}" alt="${project.title}" />
+            <div class="project-overlay">
+              <div class="overlay-actions">
+                <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer">🔗</a>
+                <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer">🐙</a>
+              </div>
+            </div>
+            ${project.featured ? '<div class="featured-badge">Featured</div>' : ''}
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            <div class="project-technologies">${techs}</div>
+            <div class="project-links">
+              <a href="${project.liveLink}" target="_blank">Live Demo 🔗</a>
+              <a href="${project.githubLink}" target="_blank" class="secondary">Source Code 🐙</a>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function filterProjects(category) {
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    if (category === 'all') {
+      renderProjects(projects);
+    } else {
+      renderProjects(projects.filter(p => p.category === category));
+    }
+  }
+
+  // Initial render
+  renderProjects(projects);
+</script>

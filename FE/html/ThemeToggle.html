@@ -1,0 +1,46 @@
+<!-- Include Lucide -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Theme toggle button -->
+<button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+  <i id="themeIcon" data-lucide="moon"></i>
+</button>
+
+<script>
+  const root = document.documentElement;
+  const toggleBtn = document.getElementById('themeToggle');
+  const iconEl = document.getElementById('themeIcon');
+
+  function setTheme(isDark) {
+    if (isDark) {
+      root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+      iconEl.setAttribute('data-lucide', 'sun');
+    } else {
+      root.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+      iconEl.setAttribute('data-lucide', 'moon');
+    }
+    lucide.createIcons(); // Re-render the updated icon
+  }
+
+  // Initial theme check
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+  setTheme(isDark);
+
+  // Toggle on click
+  toggleBtn.addEventListener('click', () => {
+    isDark = !isDark;
+    setTheme(isDark);
+  });
+
+  // Listen to system theme change
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      isDark = e.matches;
+      setTheme(isDark);
+    }
+  });
+</script>

@@ -1,0 +1,20 @@
+{
+  "name": "fe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "sass": "sass styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css --no-source-map",
+  "copy": "copyfiles -u 1 scripts/*.js ../DeliasWebsite/wwwroot/js",
+  "build": "npm run sass && npm run copy",
+  "watch": "sass --watch styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "sass": "^1.89.2"
+  }
+}

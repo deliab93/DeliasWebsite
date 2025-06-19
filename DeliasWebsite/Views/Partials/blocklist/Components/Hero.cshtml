@@ -1,0 +1,86 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Hero>>
+@{
+    var backgroundImage = Model.Content.BackgroundImage?.Url() ?? "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1";
+    var smallImage = Model.Content.SideImage?.Url();
+    var hero = Model.Content;
+    var root = Umbraco.AssignedContentItem.Root() as Home;
+    var socials = root?.SocialMediaItems;
+}
+<section id="home" class="hero" style="--hero-bg-image: url('@backgroundImage')">
+    <div class="hero-bg"></div>
+
+    <div class="container">
+        <div class="hero-content">
+
+            <div class="hero-text">
+                @if (!string.IsNullOrEmpty(@hero.ButtonTextTop))
+                {
+                    <div class="hero-badge">
+                        <span>@hero.ButtonTextTop</span>
+                    </div>
+                }
+
+                @if (!hero.Header.IsNullOrWhiteSpace())
+                {
+                    <h1 class="hero-title">
+                        @Html.Raw(hero.Header)
+                    </h1>
+                }
+
+                @if (!string.IsNullOrEmpty(hero.Subheader))
+                {
+                    <p class="hero-description">
+                        @hero.Subheader
+                    </p>
+                }
+
+
+                @if (hero?.CTalist?.Count > 0 && hero.CTalist != null)
+                {
+                    <div class="hero-buttons">
+                        @foreach (var button in hero.CTalist)
+                        {
+                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/CTAButton.cshtml", button)
+                        }
+                    </div>
+
+                }
+
+                @if (socials != null && socials.Count > 0)
+                {
+                    <div class="hero-social">
+                        @foreach (var item in socials)
+                        {
+                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                        }
+                    </div>
+                }
+
+            </div>
+
+            <!-- Hero Image -->
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="image-wrapper">
+                        <div class="image-inner">
+                            <img src="@smallImage"
+                                 alt="Developer portrait" />
+                        </div>
+                    </div>
+
+                    <div class="decorative-element element-1"></div>
+                    <div class="decorative-element element-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <a href="#about">
+                <span>Scroll Down</span>
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </a>
+        </div>
+    </div>
+</section>

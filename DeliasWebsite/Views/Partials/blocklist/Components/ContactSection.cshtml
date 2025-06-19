@@ -1,0 +1,102 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<ContactSection>>
+@{
+    var root = Umbraco.AssignedContentItem.Root() as Home;
+    var socials = root?.SocialMediaItems;
+    var location = root?.Location;
+    var emailHome = root?.ContactEmail;
+    var phoneHome = root?.ContactNumber;
+}
+<section id="contact" class="contact">
+    <div class="contact-bg-decoration decoration-1"></div>
+    <div class="contact-bg-decoration decoration-2"></div>
+
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge">Get In Touch</div>
+            <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+            <p class="section-description">
+                Have a project in mind or want to discuss potential opportunities? I'm always open to new ideas and collaborations. Feel free to reach out!
+            </p>
+        </div>
+
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 class="info-title">Contact Information</h3>
+
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Email</h4>
+                            <a href="mailto:@emailHome" class="info-value">@emailHome</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Phone</h4>
+                            <a href="tel:+447375522219" class="info-value">+447375522219</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Location</h4>
+                            <p class="info-value">London, UK</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="social-section">
+                    <h3 class="social-title">Connect with me</h3>
+                    <div class="social-links">
+                        @foreach (var item in socials)
+                        {
+                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3 class="form-title">Send a Message</h3>
+
+                <form method="post" action="/umbraco/surface/contactform/submit">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="userEmail" required placeholder="john@example.com" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Project Inquiry" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your project..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fa-solid fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
