@@ -7,10 +7,6 @@
   transition: all 0.3s ease;
   padding: var(--spacing-5) 0;
 
-  .navbar-spacer {
-  height: 5rem; // Adjust based on your actual navbar height
-}
-
   &.scrolled {
     background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
@@ -78,15 +74,42 @@
       display: none;
     }
 
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: var(--spacing-2);
+      color: var(--text-secondary);
+    }
+
     .menu-toggle {
       background: none;
       border: none;
       color: var(--text-secondary);
       cursor: pointer;
       padding: var(--spacing-2);
+      display: flex;
+      align-items: center;
+      z-index: 60;
+
+      .menu-icon {
+        display: inline;
+        font-size: 1.5rem;
+        color:var(--text-primary)
+      }
+
+      .close-icon {
+        display: none;
+        font-size: 1.5rem;
+        color:var(--text-primary)
+      }
 
       &:focus {
         outline: none;
+      }
+
+      &:hover {
+        color: var(--primary-color);
       }
     }
   }

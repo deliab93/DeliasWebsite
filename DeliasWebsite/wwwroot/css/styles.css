@@ -7,9 +7,6 @@
   transition: all 0.3s ease;
   padding: var(--spacing-5) 0;
 }
-.navbar .navbar-spacer {
-  height: 5rem;
-}
 .navbar.scrolled {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
@@ -69,15 +66,38 @@
     display: none;
   }
 }
+.navbar .nav-mobile .theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-2);
+  color: var(--text-secondary);
+}
 .navbar .nav-mobile .menu-toggle {
   background: none;
   border: none;
   color: var(--text-secondary);
   cursor: pointer;
   padding: var(--spacing-2);
+  display: flex;
+  align-items: center;
+  z-index: 60;
+}
+.navbar .nav-mobile .menu-toggle .menu-icon {
+  display: inline;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+.navbar .nav-mobile .menu-toggle .close-icon {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
 }
 .navbar .nav-mobile .menu-toggle:focus {
   outline: none;
+}
+.navbar .nav-mobile .menu-toggle:hover {
+  color: var(--primary-color);
 }
 .navbar .mobile-menu {
   position: fixed;
@@ -118,9 +138,9 @@
 
 .hero {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
+  min-height: 60vh;
   justify-content: center;
   padding: var(--spacing-20) var(--spacing-4) var(--spacing-16);
   overflow: hidden;
@@ -245,7 +265,7 @@
 .hero .hero-text .hero-social a {
   color: rgb(156, 163, 175);
   transition: color 0.3s ease;
-  padding: var(--spacing-2);
+  padding: 0.5rem 0.8rem;
   border-radius: 50%;
   backdrop-filter: blur(10px);
   background-color: rgba(255, 255, 255, 0.1);
@@ -315,11 +335,11 @@
   transform: rotate(-12deg);
 }
 .hero .scroll-indicator {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  z-index: 1;
   animation: bounce 2s infinite;
+  margin-top: 2rem;
 }
 .hero .scroll-indicator a {
   display: flex;
@@ -328,10 +348,10 @@
   color: rgb(156, 163, 175);
   text-decoration: none;
   transition: color 0.3s ease;
-  backdrop-filter: blur(10px);
-  padding: var(--spacing-2);
-  border-radius: var(--radius-lg);
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  backdrop-filter: none;
 }
 .hero .scroll-indicator a:hover {
   color: rgb(147, 197, 253);
@@ -340,7 +360,24 @@
   font-size: 0.875rem;
   margin-bottom: var(--spacing-2);
 }
+@media (min-width: 768px) {
+  .hero .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+  }
+}
 
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
 .about {
   padding: var(--spacing-24) var(--spacing-4);
   background-color: var(--bg-primary);

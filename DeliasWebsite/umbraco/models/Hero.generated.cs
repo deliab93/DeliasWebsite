@@ -82,6 +82,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Header => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "header");
 
 		///<summary>
+		/// Hide scroll down button
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideScrollDownButton")]
+		public virtual bool HideScrollDownButton => this.Value<bool>(_publishedValueFallback, "hideScrollDownButton");
+
+		///<summary>
 		/// SideImage
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]

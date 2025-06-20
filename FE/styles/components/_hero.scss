@@ -1,8 +1,8 @@
 .hero {
   position: relative;
-  min-height: 100vh;
   display: flex;
   align-items: center;
+  min-height: 60vh;
   justify-content: center;
   padding: var(--spacing-20) var(--spacing-4) var(--spacing-16);
   overflow: hidden;
@@ -133,7 +133,7 @@
       a {
         color: rgb(156, 163, 175);
         transition: color 0.3s ease;
-        padding: var(--spacing-2);
+        padding: 0.5rem 0.8rem;
         border-radius: 50%;
         backdrop-filter: blur(10px);
         background-color: rgba(255, 255, 255, 0.1);
@@ -213,33 +213,56 @@
     }
   }
 
-  .scroll-indicator {
+.scroll-indicator {
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  animation: bounce 2s infinite;
+  margin-top: 2rem;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(156, 163, 175);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    // Always no bubble
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    backdrop-filter: none;
+
+    &:hover {
+      color: rgb(147, 197, 253);
+    }
+
+    span {
+      font-size: 0.875rem;
+      margin-bottom: var(--spacing-2);
+    }
+  }
+
+  @media (min-width: 768px) {
     position: absolute;
     bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
-    animation: bounce 2s infinite;
+    margin-top: 0;
+  }
+}
 
-    a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: rgb(156, 163, 175);
-      text-decoration: none;
-      transition: color 0.3s ease;
-      backdrop-filter: blur(10px);
-      padding: var(--spacing-2);
-      border-radius: var(--radius-lg);
-      background-color: rgba(255, 255, 255, 0.1);
+}
 
-      &:hover {
-        color: rgb(147, 197, 253);
-      }
+@keyframes bounce {
 
-      span {
-        font-size: 0.875rem;
-        margin-bottom: var(--spacing-2);
-      }
-    }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
   }
 }

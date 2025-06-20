@@ -1,8 +1,9 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Hero>>
 @{
-    var backgroundImage = Model.Content.BackgroundImage?.Url() ?? "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1";
-    var smallImage = Model.Content.SideImage?.Url();
-    var hero = Model.Content;
+    var content = Model.Content;
+    var backgroundImage = content.BackgroundImage?.Url() ?? "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1";
+    var smallImage = content.SideImage?.Url();
+    var hero = content;
     var root = Umbraco.AssignedContentItem.Root() as Home;
     var socials = root?.SocialMediaItems;
 }
@@ -48,39 +49,59 @@
 
                 @if (socials != null && socials.Count > 0)
                 {
-                    <div class="hero-social">
-                        @foreach (var item in socials)
-                        {
-                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
-                        }
-                    </div>
+                    @if (content.SideImage != null)
+                    {
+                        <div class="hero-social">
+                            @foreach (var item in socials)
+                            {
+                                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="hero-social" style="justify-content:center">
+                            @foreach (var item in socials)
+                            {
+                                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                            }
+                        </div>
+                    }
+
                 }
 
             </div>
 
             <!-- Hero Image -->
-            <div class="hero-image">
-                <div class="image-container">
-                    <div class="image-wrapper">
-                        <div class="image-inner">
-                            <img src="@smallImage"
-                                 alt="Developer portrait" />
+            @if(content.SideImage != null)
+            {
+                <div class="hero-image">
+                    <div class="image-container">
+                        <div class="image-wrapper">
+                            <div class="image-inner">
+                                <img src="@smallImage"
+                                     alt="Developer portrait" />
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="decorative-element element-1"></div>
-                    <div class="decorative-element element-2"></div>
+                        <div class="decorative-element element-1"></div>
+                        <div class="decorative-element element-2"></div>
+                    </div>
                 </div>
-            </div>
+            }
+          
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <a href="#about">
-                <span>Scroll Down</span>
-                <i class="fa-solid fa-arrow-down"></i>
+        @if (!content.HideScrollDownButton)
+        {
+            <div class="scroll-indicator">
+                <a href="#about">
+                    <span>Scroll Down</span>
+                    <i class="fa-solid fa-arrow-down"></i>
 
-            </a>
-        </div>
+                </a>
+            </div>
+        }
     </div>
 </section>

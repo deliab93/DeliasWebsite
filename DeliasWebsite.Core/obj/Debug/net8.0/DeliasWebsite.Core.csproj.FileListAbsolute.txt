@@ -311,3 +311,4 @@ D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\System.Xml.XP
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\System.Xml.XPath.XDocument.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\WindowsBase.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.csproj.AssemblyReference.cache
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.sourcelink.json
