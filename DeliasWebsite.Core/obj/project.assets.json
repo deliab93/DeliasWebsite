@@ -17260,5 +17260,17 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Umbraco.Cms' 13.9.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-pgvc-6h2p-q4f6",
+      "libraryId": "Umbraco.Cms",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

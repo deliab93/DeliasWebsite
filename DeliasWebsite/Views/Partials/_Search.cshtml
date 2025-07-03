@@ -1,0 +1,43 @@
+﻿@inherits UmbracoViewPage
+@{
+    IPublishedContent rootNode = Model.Root();
+    Search? searchResultsPage = rootNode.Children<Search>()?.FirstOrDefault();
+    string? query = Context.Request.Query["q"];
+    string? idComplement = ViewData["idComplement"]?.ToString() ?? "";
+    var searchId = $"search{idComplement}";
+}
+
+@if (searchResultsPage != null)
+{
+    <div class="search-toggle-form" id="searchToggleForm">
+        <!-- Toggle icon -->
+        <button type="button" class="search-toggle-icon" id="searchToggleButton" aria-label="Toggle search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Input that will show/hide -->
+        <form action="@searchResultsPage.Url()" method="get">
+            <input type="search"
+                   id="@searchId"
+                   name="q"
+                   value="@query"
+                   placeholder="Search"
+                   class="search-toggle-input"
+                   autocomplete="off" />
+        </form>
+    </div>
+}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("searchToggleButton");
+        const formWrapper = document.getElementById("searchToggleForm");
+
+        toggleButton?.addEventListener("click", function () {
+            formWrapper?.classList.toggle("active");
+            const input = formWrapper?.querySelector(".search-toggle-input");
+            if (formWrapper.classList.contains("active")) {
+                input?.focus();
+            }
+        });
+    });
+</script>

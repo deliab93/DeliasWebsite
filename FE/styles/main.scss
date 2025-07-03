@@ -3,11 +3,16 @@
 @use './components/hero';
 @use './components/about';
 @use './components/skills';
+@use './components/skills2';
 @use './components/projects';
 @use './components/contact';
 @use './components/footer';
 @use './components/theme-toggle';
 @use './components/rte';
+@use './components/timeline';
+@use './components/search';
+@use './components/pagination';
+
 
 // CSS Custom Properties for theme switching
 :root {
@@ -66,6 +71,8 @@ html {
   scroll-behavior: smooth;
 }
 
+
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -74,6 +81,14 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-secondary);
   transition: background-color 0.3s ease, color 0.3s ease;
+   overflow-x: hidden; // Prevents horizontal scroll
+  overscroll-behavior: none; // Prevents pull-to-refresh or bounce overscroll on mobile
+  max-width: 100%;
+  form span.field-validation-error,
+  form .field-validation-error.text-danger {
+  color: red !important;
+  font-weight: 500;
+}
 }
 
 // Utility classes
@@ -86,6 +101,7 @@ body {
     padding: 0 var(--spacing-6);
   }
 }
+
 
 .btn {
   display: inline-flex;

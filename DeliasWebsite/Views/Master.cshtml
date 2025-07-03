@@ -1,12 +1,11 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@using Umbraco.Cms.Core.Models.Blocks
+﻿@using Umbraco.Cms.Core.Models.Blocks
 @using Umbraco.Cms.Web.Common.PublishedModels
 @using Umbraco.Cms.Web.Common.Extensions
 @using Umbraco.Cms.Core.Models.PublishedContent
 @using Umbraco.Extensions
 
 @{
-    var site = Model.Root();
+   // var site = Model.Root();
 }
 
 <!DOCTYPE html>
@@ -14,7 +13,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@site?.Value("siteTitle")</title>
+    <title>
+        @* @site?.Value("siteTitle") *@
+        </title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

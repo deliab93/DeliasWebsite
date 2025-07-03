@@ -1,0 +1,150 @@
+.search-results {
+  background-color: #0d1117;
+  color: #fff;
+  padding: 6rem 2rem;
+  min-height: 100vh;
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+  }
+
+  &__query {
+    background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  &__empty {
+    color: #9ca3af;
+    font-size: 1.125rem;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    background-color: #161b22;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #3b82f6;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__item-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  &__excerpt {
+    color: #d1d5db;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+ .search-form__button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+
+  i {
+    pointer-events: none;
+  }
+
+  &:hover {
+    color: #60a5fa; // light blue hover
+  }
+}
+.search-toggle-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .search-toggle-icon {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: var(--spacing-2);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--accent-color);
+    }
+
+    i {
+      pointer-events: none;
+    }
+  }
+
+  .search-toggle-input {
+    width: 0;
+    opacity: 0;
+    padding: var(--spacing-2) var(--spacing-3);
+    margin-left: var(--spacing-2);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 1rem;
+    pointer-events: none;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    box-shadow: var(--shadow-sm);
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+
+  &.active .search-toggle-input {
+    width: 180px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+// Dark theme override (optional, since you use CSS variables)
+[data-theme="dark"] {
+  .search-toggle-form {
+    .search-toggle-icon {
+      color: var(--dark-text-primary);
+
+      &:hover {
+        color: var(--accent-color);
+      }
+    }
+
+    .search-toggle-input {
+      background-color: var(--dark-bg-primary);
+      color: var(--dark-text-primary);
+      border-color: var(--dark-border-color);
+
+      &::placeholder {
+        color: var(--dark-text-muted);
+      }
+    }
+  }
+}

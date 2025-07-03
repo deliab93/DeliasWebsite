@@ -1,0 +1,102 @@
+﻿@using System.Net
+@using DeliasWebsite.Core.Features.Search
+@using Umbraco.Cms.Web.Common.PublishedModels
+@inject ISearchService _searchService
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Search>
+
+@{
+    Layout = "Master.cshtml";
+
+    string? query = Context.Request.Query["q"];
+    string? page = Context.Request.Query["p"];
+    string? sortOrder = Context?.Request?.Query["order"];
+
+    int currentPage = int.TryParse(page, out int cp) ? cp : 1;
+    int pageSize = 6;
+    bool showAll = !string.IsNullOrEmpty(Context.Request.Query["view"]) && Context.Request.Query["view"] == "all";
+
+    IEnumerable<IPublishedContent> allResults = _searchService.GetSearchResults(query, sortOrder, currentPage);
+    int totalRecords = allResults.Count();
+
+    if (showAll) pageSize = totalRecords;
+    int totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+    int skip = pageSize * (currentPage - 1);
+    IEnumerable<IPublishedContent> results = allResults.Skip(skip).Take(pageSize);
+
+    int paginationItems = 4;
+    int offset = (int)Math.Ceiling((decimal)paginationItems / 2);
+    int paginationStart = Math.Max(1, currentPage - offset);
+    int paginationEnd = Math.Min(totalPages, currentPage + offset);
+
+    if (paginationEnd - paginationStart < paginationItems)
+    {
+        if (paginationStart == 1)
+        {
+            paginationEnd = Math.Min(paginationItems, totalPages);
+        }
+        else if (paginationEnd == totalPages)
+        {
+            paginationStart = Math.Max(1, totalPages - paginationItems + 1);
+        }
+    }
+
+    var pagination = new Pagination
+    {
+        CurrentPage = currentPage,
+        PageSize = pageSize,
+        PaginationStart = paginationStart,
+        PaginationEnd = paginationEnd,
+        Skip = skip,
+        TotalPages = totalPages,
+        TotalRecords = totalRecords,
+        PageType = "search",
+        Query = query
+    };
+}
+@Html.GetBlockListHtml(Model?.RenderComponents)
+<div class="search-results">
+    <div class="container">
+        <h1 class="search-results__title">
+            @totalRecords result@(totalRecords != 1 ? "s" : "") for
+            <span class="search-results__query">"@query"</span>
+        </h1>
+
+        @if (results.Any())
+        {
+            <ul class="search-results__list">
+                @foreach (var result in results)
+                {
+                    var pageTitle = result.Value<string>("pageTitle") ?? result.Name;
+                    var summary = result.Value<string>("pageSummary")
+                    ?? result.Value<string>("heroText")
+                    ?? result.Value<string>("bannerText")
+                    ?? result.Value<string>("Summary")
+                    ?? "";
+
+                    <li class="search-results__item">
+                        <h3 class="search-results__item-title">
+                            <a class="search-results__link" href="@result.Url()">@pageTitle</a>
+                        </h3>
+                        <p class="search-results__excerpt">@summary</p>
+                        <a href="@result.Url()" class="btn btn--sunrise search-results__button">
+                            Find out more
+                            <svg class="stroke-current" width="17" height="17" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.61816 8.55273H14.142" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M9.42676 4.05273L14.141 8.55273L9.42676 13.0527" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            @if (totalPages > 1)
+            {
+                @await Html.PartialAsync("_Pagination", pagination)
+            }
+        }
+        else
+        {
+            <p class="search-results__empty">No results found for <span class="search-results__query">"@query"</span>.</p>
+        }
+    </div>
+</div>

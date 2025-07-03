@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Skills2>>
+@{
+    var content = Model.Content;
+    var skills = content.ListOfSkils;
+    var cards = content.ListOfCards;
+}
+<section class="skills2">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">@Html.Raw(content.Title)</h2>
+            <p class="section-description">
+                @content.Description
+            </p>
+        </div>
+
+        <div class="skills2-content">
+            <div class="skills2-list">
+                @foreach(var skill in skills)
+                {
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">@skill.Content.Value("skillText")</span>
+                            <span class="skill-percentage">@skill.Content.Value("percentage")%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: @skill.Content.Value("percentage")%"></div>
+                        </div>
+                    </div>
+                }              
+            </div>
+
+            <div class="stats-grid">
+                @foreach(var stat in cards)
+                {
+                    @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/Stats.cshtml", stat)
+                }
+            </div>
+        </div>
+    </div>
+</section>

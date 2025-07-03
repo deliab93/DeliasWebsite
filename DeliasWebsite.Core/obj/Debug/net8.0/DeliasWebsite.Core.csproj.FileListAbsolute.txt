@@ -1,14 +1,6 @@
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\DeliasWebsite.Core.deps.json
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\DeliasWebsite.Core.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\DeliasWebsite.Core.pdb
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.GeneratedMSBuildEditorConfig.editorconfig
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.AssemblyInfoInputs.cache
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.AssemblyInfo.cs
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.csproj.CoreCompileInputs.cache
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.dll
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\refint\DeliasWebsite.Core.dll
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.pdb
-D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\ref\DeliasWebsite.Core.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\Microsoft.AspNetCore.Antiforgery.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\Microsoft.AspNetCore.Authentication.BearerToken.dll
@@ -311,4 +303,12 @@ D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\System.Xml.XP
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\System.Xml.XPath.XDocument.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\bin\Debug\net8.0\refs\WindowsBase.dll
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.csproj.AssemblyReference.cache
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.AssemblyInfoInputs.cache
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.AssemblyInfo.cs
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.csproj.CoreCompileInputs.cache
 D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.sourcelink.json
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.dll
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\refint\DeliasWebsite.Core.dll
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\DeliasWebsite.Core.pdb
+D:\My Repos\DeliasWebsite\DeliasWebsite.Core\obj\Debug\net8.0\ref\DeliasWebsite.Core.dll

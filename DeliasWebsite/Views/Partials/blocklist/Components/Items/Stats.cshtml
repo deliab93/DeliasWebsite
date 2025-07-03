@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Stats>>
+@{
+    var content = Model.Content;
+}
+<div class="stat-card">
+    <div class="stat-value">@content.Number</div>
+    <div class="stat-label">@content.Title<br /><small>@content.Subtitle</small></div>
+</div>

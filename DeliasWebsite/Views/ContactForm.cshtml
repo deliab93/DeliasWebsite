@@ -1,9 +1,95 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContactForm>
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Web.Common.PublishedModels.ContactForm>
+@using DeliasWebsite.Core.Features.Contact
+
 @{
-	Layout = "~/Views/Master.cshtml";
+    Layout = "~/Views/Master.cshtml";
+    var root = Umbraco.AssignedContentItem.Root() as Home;
+    var socials = root?.SocialMediaItems;
+    var emailHome = root?.ContactEmail;
+    var phoneHome = root?.ContactNumber;
 }
-<div id="root">
-	@Html.GetBlockListHtml(Model?.RenderComponents)
-</div>
 
+@Html.GetBlockListHtml(Model?.RenderComponents)
 
+<section id="contact" class="contact">
+   
+    <div class="contact-bg-decoration decoration-1"></div>
+    <div class="contact-bg-decoration decoration-2"></div>
+   
+    <div class="container">
+        <div class="section-header">
+            <div class="section-badge">Get In Touch</div>
+            <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+            <a id="contact-form-anchor"></a>
+            <p class="section-description">
+                Have a project in mind or want to discuss potential opportunities? I'm always open to new ideas and collaborations. Feel free to reach out!
+            </p>
+        </div>
+       
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 class="info-title">Contact Information</h3>
+
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Email</h4>
+                            <a href="mailto:@emailHome" class="info-value">@emailHome</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Phone</h4>
+                            <a href="tel:@phoneHome" class="info-value">@phoneHome</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="info-content">
+                            <h4 class="info-label">Location</h4>
+                            <p class="info-value">London, UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-section">
+                    <h3 class="social-title">Connect with me</h3>
+                    <div class="social-links">
+                        @foreach (var item in socials)
+                        {
+                            @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/SocialMediaItem.cshtml", item)
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+              
+                <h3 class="form-title">Send a Message</h3>
+
+                <!-- ✅ Load the strongly-typed form via partial -->
+                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/ContactSection.cshtml", new ContactFormViewModel())
+                @* @await Html.PartialAsync("Partials/ContactForm", new ContactFormViewModel()) *@
+            </div>
+        </div>
+    </div>
+</section>
+@if (TempData["scrollToForm"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const anchor = document.getElementById("contact-form-anchor");
+            if (anchor) {
+                anchor.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+}

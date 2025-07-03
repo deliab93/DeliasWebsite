@@ -1,0 +1,22 @@
+﻿@using DeliasWebsite.Core.Features.Search;
+@inherits UmbracoViewPage<SearchPageViewModel>
+@{
+    Layout = "Master.cshtml";
+}
+
+@if (!Model.Results.Any())
+{
+    <p>No results found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var result in Model.Results)
+        {
+            <li>
+                <a href="@result.Url">@result.Title</a><br />
+                <small>@result.Snippet</small>
+            </li>
+        }
+    </ul>
+}

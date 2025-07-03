@@ -5,6 +5,19 @@
     <Nullable>enable</Nullable>
     <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Compile Remove="Views\SearchPage\**" />
+    <Content Remove="Controllers\**" />
+    <Content Remove="Views\SearchPage\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <EmbeddedResource Remove="Views\SearchPage\**" />
+    <None Remove="Controllers\**" />
+    <None Remove="Views\SearchPage\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\SearchPage.cshtml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="13.9.1" />

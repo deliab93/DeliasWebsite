@@ -2,6 +2,7 @@
 @{
     var site = Model.Root() as Home;
     var footerSocials = site?.SocialMediaItems;
+    var year = DateTime.Now.Year;
 }
 <footer class="footer">
     <div class="container">
@@ -11,7 +12,7 @@
                 <!-- Brand & Social -->
                 <div class="footer-section brand">
                     <div class="footer-logo">
-                        <a href="@site.Url()"><span class="highlight">Dev</span>Portfolio</a>
+                        <a href="@site.Url()"><span class="highlight">Delias</span>Portfolio</a>
                     </div>
                     @if (!string.IsNullOrEmpty(site?.Description))
                     {
@@ -94,7 +95,7 @@
             <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <p class="copyright">
-                    © 2025 DevPortfolio. Made with
+                    © @year DeliasPortfolio. Made with
                     <span class="heart">
                         <i class="fa-solid fa-heart"></i>
                     </span>

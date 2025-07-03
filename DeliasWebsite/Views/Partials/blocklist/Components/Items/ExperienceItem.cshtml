@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<ExperienceItem>>
+@{
+    var position = ViewData["position"]?.ToString() ?? "left";
+    var content = Model.Content;
+}
+@if (!string.IsNullOrEmpty(content.Title))
+{
+    <div class="timeline-item @position">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">
+            <span>@content.YearsActive</span>
+        </div>
+        <div class="timeline-content">
+            <div class="job-title">
+                <span>@content.Title</span>
+            </div>
+            @if (!string.IsNullOrEmpty(content.Subtitle))
+            {
+                <div class="company @position">@content.Subtitle</div>
+            }
+            @if (!string.IsNullOrEmpty(content.Description))
+            {
+                <p class="@position">@content.Description</p>
+            }          
+        </div>
+    </div>
+}

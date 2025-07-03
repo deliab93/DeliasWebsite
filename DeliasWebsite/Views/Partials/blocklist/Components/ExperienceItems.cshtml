@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<ExperienceItems>>
+@{
+    var content = Model.Content;
+    var items = content.ExperienceItemList;
+}
+<section class="timeline-section">
+    <div class="container">
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            @for (int i = 0; i < items?.Count(); i++)
+            {
+                var card = items[i];
+                var position = i % 2 == 0 ? "left" : "right";
+
+                var viewData = new ViewDataDictionary(ViewData)
+                        {
+                        { "position", position }
+                        };
+
+                @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/ExperienceItem.cshtml", card, viewData)
+            }
+
+        </div>
+    </div>
+</section>
+

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Cache;
+using Umbraco.Cms.Core.Configuration.Models;
 using Umbraco.Cms.Core.Logging;
 using Umbraco.Cms.Core.Mail;
 using Umbraco.Cms.Core.Models.Email;
@@ -36,23 +37,55 @@ namespace DeliasWebsite.Core.Features.Contact
         }
 
         [HttpPost]
-        public async Task<IActionResult> Submit(string name, string userEmail, string message)
+        public async Task<IActionResult> Submit(ContactFormViewModel model)
         {
+            var rootNode = _contentService.GetRootContent().FirstOrDefault();
+            if (rootNode == null)
+            {
+                _logger.LogError("Root node not found.");
+                TempData["error"] = "Unable to process request right now.";
+                return RedirectToCurrentUmbracoPage();
+            }
+
+            // 2. Get the first descendant folder node
+            var folderNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out var total)
+                           .FirstOrDefault(x => x.ContentType.Alias == "contactSubmissionsFolder");
+
+            if (folderNode == null)
+            {
+                _logger.LogError("Folder node of type 'contactSubmissionsFolder' not found.");
+                TempData["error"] = "Unable to submit your message at this time.";
+                TempData["scrollToForm"] = true;
+                return RedirectToCurrentUmbracoPage();
+            }
+
+            int submissionsParentId = folderNode.Id;
+
+            if (!ModelState.IsValid)
+            {
+                // Return to the current page to display validation errors
+                TempData["scrollToForm"] = true;
+                return CurrentUmbracoPage();
+            }
+
             try
             {
-                var submission = _contentService.Create(name, -1, "contactSubmission");
+                // Create content node under the parent folder
+                var submissionName = $"Contact from {model.Name} - {DateTime.UtcNow:yyyy-MM-dd HH:mm}";
+                var submission = _contentService.Create(submissionName, submissionsParentId, "contactForm");
 
-                submission.SetValue("name", name);
-                submission.SetValue("email", userEmail);
-                submission.SetValue("message", message);
+                submission.SetValue("nameFrom", model.Name);
+                submission.SetValue("email", model.Email);
+                submission.SetValue("subject", model.Subject ?? string.Empty);
+                submission.SetValue("message", model.Message);
                 submission.SetValue("submissionDate", DateTime.UtcNow.ToString("u"));
                 _contentService.SaveAndPublish(submission);
 
                 var emailMessage = new EmailMessage(
-                    from: userEmail,
+                    from: "deliab93@icloud.com",
                     to: "deliab93@icloud.com",
-                    subject: "New Contact Form Submission",
-                    body: $"Name: {name}\nEmail: {userEmail}\n\nMessage:\n{message}",
+                    subject: $"Contact Form: {model.Subject ?? "No Subject"}",
+                    body: $"Name: {model.Name}\nEmail: {model.Email}\n\nMessage:\n{model.Message}",
                     false
                 );
 
@@ -64,9 +97,11 @@ namespace DeliasWebsite.Core.Features.Contact
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error saving contact form submission.");
+                TempData["scrollToForm"] = true;
                 TempData["error"] = "Something went wrong. Please try again.";
             }
 
+            TempData["scrollToForm"] = true;
             return RedirectToCurrentUmbracoPage();
         }
 

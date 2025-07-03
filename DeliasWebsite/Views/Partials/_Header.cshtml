@@ -8,7 +8,7 @@
 
     <div class="container navbar-content">
         <a href="@site?.Url()" class="logo">
-            <span class="highlight">Dev</span>Portfolio
+            <span class="highlight">Delias</span>Portfolio
         </a>
 
         <div class="nav-desktop">
@@ -17,7 +17,7 @@
                 <nav class="nav-links">
                     @foreach (var childPage in children)
                     {
-                        var hideFromNav = childPage.Value<bool>("hideFromNavigation");
+                        var hideFromNav = childPage.Value<bool>("hideFromNavigation") || childPage.ContentType.Alias.InvariantEquals("contactSubmissionsFolder") || childPage.ContentType.Alias.InvariantEquals("search");
                         if (childPage.IsPublished() && !hideFromNav)
                         {
                             <a href="@childPage.Url()">@childPage.Name</a>
@@ -28,6 +28,8 @@
             <button class="theme-toggle" aria-label="Toggle theme">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun "><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
             </button>
+
+            @await Html.PartialAsync("_Search")
 
             <a href="@site?.HireMeUrl?.Url" class="btn btn-primary">Hire Me</a>
          </div>
@@ -58,6 +60,7 @@
             </nav>
             
         }
+        @await Html.PartialAsync("_Search")
         <a href="@site?.HireMeUrl?.Url" class="btn btn-primary">Hire Me</a>
     </div>
 </header>
@@ -79,14 +82,27 @@
           mobileMenu.classList.add('open');
           menuIcon.style.display = 'none';
           closeIcon.style.display = 'inline';
-          document.body.style.overflow = 'hidden'; // prevent scroll
+          document.body.style.overflow = 'hidden'; 
         } else {
           mobileMenu.classList.remove('open');
           menuIcon.style.display = 'inline';
           closeIcon.style.display = 'none';
-          document.body.style.overflow = ''; // restore scroll
+          document.body.style.overflow = ''; 
         }
       });
     });
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("searchToggleButton");
+        const formWrapper = document.getElementById("searchToggleForm");
 
+        toggleButton?.addEventListener("click", function () {
+            formWrapper?.classList.toggle("active");
+            const input = formWrapper?.querySelector(".search-toggle-input");
+            if (formWrapper.classList.contains("active")) {
+                input?.focus();
+            }
+        });
+    });
+</script>

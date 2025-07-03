@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Hero>>
 @{
     var content = Model.Content;
-    var backgroundImage = content.BackgroundImage?.Url() ?? "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1";
+    var backgroundImage = content.BackgroundImage?.Url();
     var smallImage = content.SideImage?.Url();
     var hero = content;
     var root = Umbraco.AssignedContentItem.Root() as Home;
