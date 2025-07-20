@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Contact form</summary>
 	[PublishedModel("contactForm")]
-	public partial class ContactForm : PublishedContentModel
+	public partial class ContactForm : PublishedContentModel, ISettingsAndSeo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -58,13 +58,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string Email => this.Value<string>(_publishedValueFallback, "email");
 
 		///<summary>
-		/// Hide from navigation
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("hideFromNavigation")]
-		public virtual bool HideFromNavigation => this.Value<bool>(_publishedValueFallback, "hideFromNavigation");
-
-		///<summary>
 		/// Message
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
@@ -89,14 +82,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel RenderComponents => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "renderComponents");
 
 		///<summary>
-		/// Send to email
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("sendToEmail")]
-		public virtual string SendToEmail => this.Value<string>(_publishedValueFallback, "sendToEmail");
-
-		///<summary>
 		/// Subject
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
@@ -111,5 +96,59 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("submissionDate")]
 		public virtual string SubmissionDate => this.Value<string>(_publishedValueFallback, "submissionDate");
+
+		///<summary>
+		/// Canonical url
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("canonicalUrl")]
+		public virtual string CanonicalUrl => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetCanonicalUrl(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hide From Navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromNavigation")]
+		public virtual bool HideFromNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromNavigation(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hide from sitemp
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromSitemp")]
+		public virtual bool HideFromSitemp => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemp(this, _publishedValueFallback);
+
+		///<summary>
+		/// Meta description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metaDescription")]
+		public virtual string MetaDescription => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetMetaDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("openGraphImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OpenGraphImage => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetOpenGraphImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTitle")]
+		public virtual string PageTitle => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetPageTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Tags
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tags")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> Tags => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetTags(this, _publishedValueFallback);
 	}
 }

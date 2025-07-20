@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<RTetext>>
 @if (Model.Content.RTE != null)
-{
+{    
     <div class="rte">
        @Html.Raw(Model.Content.RTE)
-    </div>
+    </div>  
 }

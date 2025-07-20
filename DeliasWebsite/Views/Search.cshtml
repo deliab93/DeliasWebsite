@@ -66,12 +66,8 @@
             <ul class="search-results__list">
                 @foreach (var result in results)
                 {
-                    var pageTitle = result.Value<string>("pageTitle") ?? result.Name;
-                    var summary = result.Value<string>("pageSummary")
-                    ?? result.Value<string>("heroText")
-                    ?? result.Value<string>("bannerText")
-                    ?? result.Value<string>("Summary")
-                    ?? "";
+                    var pageTitle = result.Name;
+                    var summary = result.Value<string>("metaDescription") ?? "";
 
                     <li class="search-results__item">
                         <h3 class="search-results__item-title">

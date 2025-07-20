@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Article>
+@{
+	Layout = "~/Views/Master.cshtml"; ;
+}
+<main class="article">
+    <header class="article-header">
+        <h1>@Model?.Title</h1>
+        <div class="article-meta">
+            @if(!string.IsNullOrEmpty(Model?.Author))
+            {
+                <span>By @Model?.Author ▪ </span>
+            }        
+            <time datetime="@Model?.PostDate">@Model?.PostDate.ToString("MMMM dd, yyyy")</time>
+        </div>
+    </header>
+    <img src="@Model?.MainImage?.Url()" alt="@Model?.Title" class="article-image" />
+    <div class="article-content">
+        @Html.Raw(Model.BodyText)
+    </div>
+</main>
+

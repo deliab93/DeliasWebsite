@@ -1,0 +1,96 @@
+.article {
+  padding: var(--spacing-16) var(--spacing-4);
+  max-width: 60rem;
+  margin: 0 auto;
+  color: var(--text-primary);
+
+  .article-header {
+    margin-bottom: var(--spacing-10);
+    text-align: center;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-4);
+    }
+
+    .article-meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+  }
+img{
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: var(--spacing-8) auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 1024px) {
+    max-height: 500px;
+  }
+}
+  .article-content {
+    line-height: 1.8;
+    font-size: 1.125rem;
+
+    h2, h3, h4 {
+      color: var(--text-primary);
+      margin-top: var(--spacing-10);
+      margin-bottom: var(--spacing-4);
+    }
+
+    p {
+      margin-bottom: var(--spacing-6);
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    blockquote {
+      border-left: 4px solid var(--accent-color);
+      background-color: var(--bg-secondary);
+      padding: var(--spacing-4) var(--spacing-6);
+      margin: var(--spacing-8) 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: var(--radius-lg);
+      margin: var(--spacing-8) 0;
+      box-shadow: var(--shadow-md);
+    }
+
+    ul, ol {
+      padding-left: var(--spacing-8);
+      margin-bottom: var(--spacing-6);
+    }
+
+    code {
+      background-color: var(--bg-tertiary);
+      padding: 0.2rem 0.4rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+    }
+
+    pre {
+      background-color: var(--bg-tertiary);
+      padding: var(--spacing-6);
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-8);
+    }
+  }
+}

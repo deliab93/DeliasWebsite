@@ -3,17 +3,18 @@
     var content = Model.Content;
     var filters = content.Filters;
     var imageUrl = content?.Image?.Url();
+    var tagNamesStr = filters != null ? string.Join(",", filters.Select(t => t.Name.ToLower())) : "";
 }
-<div class="project-card">
-    <div class="project-image">
+<div class="card" data-tags="@tagNamesStr">
+    <div class="card-image">
         <img src="@imageUrl" alt="@content.Title" />
     </div>
-    <div class="project-content">
-        <h3 class="project-title">@content.Title</h3>
-        <p class="project-description">@content.Description</p>
+    <div class="card-content">
+        <h3 class="card-title">@content.Title</h3>
+        <p class="card-description">@content.Description</p>
         @if (filters?.Count() > 0)
         {
-            <div class="project-technologies">
+            <div class="card-technologies">
                 @foreach(var filter in filters)
                 {
                     <span class="tech-tag">@filter.Name</span>
@@ -23,7 +24,7 @@
 
         @if (content.CardUrl != null || content.GitUrl != null)
         {
-            <div class="project-links">
+            <div class="card-links">
                  @if (content.CardUrl != null){                   
                     <a href="@content.CardUrl" target="_blank">Live Demo 🔗</a>
                  }

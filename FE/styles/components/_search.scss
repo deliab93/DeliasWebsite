@@ -1,6 +1,6 @@
 .search-results {
-  background-color: #0d1117;
-  color: #fff;
+  background-color:var(--bg-primary);
+  color: var(--text-primary);
   padding: 6rem 2rem;
   min-height: 100vh;
 
@@ -28,7 +28,7 @@
   }
 
   &__item {
-    background-color: #161b22;
+    background-color: var(--bg-seconday);
     border-radius: 1rem;
     padding: 1.5rem;
     margin-bottom: 2rem;

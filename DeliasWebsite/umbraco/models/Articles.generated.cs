@@ -18,14 +18,14 @@ using Umbraco.Extensions;
 
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
-	/// <summary>Hero</summary>
-	[PublishedModel("hero")]
-	public partial class Hero : PublishedElementModel
+	/// <summary>Articles</summary>
+	[PublishedModel("articles")]
+	public partial class Articles : PublishedContentModel, ISettingsAndSeo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		public new const string ModelTypeAlias = "hero";
+		public new const string ModelTypeAlias = "articles";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Hero, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Articles, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public Hero(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public Articles(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,65 +50,65 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Background Image
+		/// Render Components
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("backgroundImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops BackgroundImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "backgroundImage");
+		[ImplementPropertyType("renderComponents")]
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel RenderComponents => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "renderComponents");
 
 		///<summary>
-		/// Button Text Top
+		/// Canonical url
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("buttonTextTop")]
-		public virtual string ButtonTextTop => this.Value<string>(_publishedValueFallback, "buttonTextTop");
+		[ImplementPropertyType("canonicalUrl")]
+		public virtual string CanonicalUrl => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetCanonicalUrl(this, _publishedValueFallback);
 
 		///<summary>
-		/// CTAList
+		/// Hide From Navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromNavigation")]
+		public virtual bool HideFromNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromNavigation(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hide from sitemp
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromSitemp")]
+		public virtual bool HideFromSitemp => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemp(this, _publishedValueFallback);
+
+		///<summary>
+		/// Meta description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cTAList")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel CTalist => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "cTAList");
+		[ImplementPropertyType("metaDescription")]
+		public virtual string MetaDescription => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetMetaDescription(this, _publishedValueFallback);
 
 		///<summary>
-		/// Header
+		/// SEO image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("header")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Header => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "header");
+		[ImplementPropertyType("openGraphImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OpenGraphImage => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetOpenGraphImage(this, _publishedValueFallback);
 
 		///<summary>
-		/// Hide scroll down button
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("hideScrollDownButton")]
-		public virtual bool HideScrollDownButton => this.Value<bool>(_publishedValueFallback, "hideScrollDownButton");
-
-		///<summary>
-		/// SideImage
+		/// Page title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("sideImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops SideImage => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "sideImage");
+		[ImplementPropertyType("pageTitle")]
+		public virtual string PageTitle => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetPageTitle(this, _publishedValueFallback);
 
 		///<summary>
-		/// Subheader
+		/// Tags
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("subheader")]
-		public virtual string Subheader => this.Value<string>(_publishedValueFallback, "subheader");
-
-		///<summary>
-		/// Text align
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("textAlign")]
-		public virtual bool TextAlign => this.Value<bool>(_publishedValueFallback, "textAlign");
+		[ImplementPropertyType("tags")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> Tags => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetTags(this, _publishedValueFallback);
 	}
 }

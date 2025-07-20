@@ -2,7 +2,6 @@
 @{
     var skills = Model.Content.Skills;
     var content = Model.Content;
-    var filters = Model.Content.Filters;
 }
 @if (skills?.Count() > 0)
 {
@@ -16,33 +15,7 @@
                 <h3 class="category-title">@content.Title</h3>
             }
             <br />
-           @*  @if (filters?.Count() > 0)
-            {
-                <div class="projects">
-                    <div class="container">
-                        <div class="filter-buttons">
-                            @foreach (var filter in filters)
-                            {
-                                <button class="filter-btn active">@filter.Name</button>
-                            }
-                        </div>
-                    </div>
-                </div> *@
-             @*    <div class="project-technologies">
-                    @foreach (var filter in filters)
-                    {
-                        <span class="tech-tag">@filter.Name</span>
-                    }
-                </div> *@
-        
-            @* }     *@
         </div>
-        @if (!content.Description.IsNullOrWhiteSpace())
-        {
-            <p class="project-description">@Html.Raw(content.Description)</p>
-        }
-        else
-        {
             <div class="skills-list">
                 @foreach (var skill in skills)
                 {
@@ -54,7 +27,7 @@
 
                 }
             </div>
-        }
+        
     </div>
 
 }

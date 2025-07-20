@@ -3,7 +3,7 @@
     var filters = Model?.Content?.Filters;
 
 }
-<section id="projects" class="projects">
+<section class="cards">
     <div class="container">
         <div class="section-header">
             @if (!string.IsNullOrWhiteSpace(Model?.Content?.ButtonTextTop))
@@ -11,7 +11,7 @@
                   <div class="section-badge">@Model.Content.ButtonTextTop</div>
             }
 
-            @if (!(Model.Content.Title.IsNullOrWhiteSpace()))
+            @if (!(string.IsNullOrWhiteSpace(Model?.Content?.Title?.ToString())))
             {
                <h2 class="section-title">@Html.Raw(Model?.Content?.Title)</h2>
             }
@@ -26,13 +26,13 @@
         
         @if(filters?.Count() > 0)
         {
-         <div class="filter-buttons">
-             <button onclick="filterProjects('all')" class="filter-btn active">All</button>
-            @foreach(var filter in filters)
-            {
-                <button onclick="filterProjects('@filter.Name')" class="filter-btn">@filter.Name</button>
-            }                 
-        </div>   
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                @foreach (var filter in filters)
+                {
+                    <button class="filter-btn" data-filter="@filter.Name.ToLower()">@filter.Name</button>
+                }
+            </div>
         }
   
 
@@ -42,75 +42,26 @@
 
     </div>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".card");
 
-@* <script>
-    const projects = [
-      {
-        id: 1,
-        title: 'E-Commerce Platform',
-        description: 'A full-featured e-commerce platform...',
-        image: 'https://images.pexels.com/photos/38519/macbook-laptop-ipad-apple-38519.jpeg',
-        technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Stripe API'],
-        category: 'fullstack',
-        liveLink: '#',
-        githubLink: '#',
-        featured: true
-      },
-      {
-        id: 2,
-        title: 'Task Management App',
-        description: 'A productivity application...',
-        image: 'https://images.pexels.com/photos/5313361/pexels-photo-5313361.jpeg',
-        technologies: ['React', 'Redux', 'Firebase', 'Material UI'],
-        category: 'frontend',
-        liveLink: '#',
-        githubLink: '#',
-        featured: true
-      },
-      // ... Add the rest of your projects here
-    ];
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const filter = button.getAttribute("data-filter");
 
-    function renderProjects(projectsToRender) {
-      const container = document.getElementById('projectsGrid');
-      container.innerHTML = '';
-      projectsToRender.forEach(project => {
-        const techs = project.technologies.map(t => `<span class="tech-tag">${t}</span>`).join('');
-        container.innerHTML += `
-          <div class="project-card">
-            <div class="project-image">
-              <img src="${project.image}" alt="${project.title}" />
-              <div class="project-overlay">
-                <div class="overlay-actions">
-                  <a href="${project.liveLink}" target="_blank" rel="noopener noreferrer">🔗</a>
-                  <a href="${project.githubLink}" target="_blank" rel="noopener noreferrer">🐙</a>
-                </div>
-              </div>
-              ${project.featured ? '<div class="featured-badge">Featured</div>' : ''}
-            </div>
-            <div class="project-content">
-              <h3 class="project-title">${project.title}</h3>
-              <p class="project-description">${project.description}</p>
-              <div class="project-technologies">${techs}</div>
-              <div class="project-links">
-                <a href="${project.liveLink}" target="_blank">Live Demo 🔗</a>
-                <a href="${project.githubLink}" target="_blank" class="secondary">Source Code 🐙</a>
-              </div>
-            </div>
-          </div>
-        `;
-      });
-    }
 
-    function filterProjects(category) {
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      if (category === 'all') {
-        renderProjects(projects);
-      } else {
-        renderProjects(projects.filter(p => p.category === category));
-      }
-    }
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
 
-    // Initial render
-    renderProjects(projects);
-</script> *@
+
+                cards.forEach(card => {
+                    const tags = card.getAttribute("data-tags").toLowerCase().split(",");
+                    const show = filter === "all" || tags.includes(filter.toLowerCase());
+                    card.style.display = show ? "block" : "none";
+                });
+            });
+        });
+    });
+</script>

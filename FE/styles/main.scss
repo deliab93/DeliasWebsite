@@ -4,7 +4,7 @@
 @use './components/about';
 @use './components/skills';
 @use './components/skills2';
-@use './components/projects';
+@use './components/cards';
 @use './components/contact';
 @use './components/footer';
 @use './components/theme-toggle';
@@ -12,6 +12,7 @@
 @use './components/timeline';
 @use './components/search';
 @use './components/pagination';
+@use  './components/article';
 
 
 // CSS Custom Properties for theme switching
@@ -91,17 +92,36 @@ body {
 }
 }
 
-// Utility classes
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-4);
+  padding: 0 var(--spacing-6);
 
   @media (min-width: 768px) {
-    padding: 0 var(--spacing-6);
+    padding: var(--spacing-2) var(--spacing-6);
   }
 }
 
+
+.btn-small{
+  color: white !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border: black;
+  border-radius: var(--radius-xl);
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  gap: var(--spacing-2);
+  background-color: var(--primary-color);
+    &:hover {
+      background-color: var(--primary-hover);
+    }
+}
 
 .btn {
   display: inline-flex;
@@ -143,6 +163,7 @@ body {
       color: var(--primary-color);
     }
   }
+
 }
 
 .card {

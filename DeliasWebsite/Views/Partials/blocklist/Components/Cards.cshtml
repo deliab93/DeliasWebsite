@@ -2,7 +2,7 @@
 @{
     var cards = Model.Content.CardsList;
 }
-<div class="projects-grid">
+<div class="cards-grid">
     @foreach (var card in cards)
     {
         @await Html.PartialAsync("~/Views/Partials/blocklist/Components/Items/Card.cshtml", card)

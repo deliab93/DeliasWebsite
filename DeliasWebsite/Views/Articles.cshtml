@@ -1,0 +1,103 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Articles>
+@{
+    Layout = "~/Views/Master.cshtml";
+    var posts = Model.Children()
+         .Where(x => x.ContentType.Alias == "article")
+         .OrderByDescending(x => x.Value<DateTime>("postDate"));
+
+    var allTags = posts
+                    .SelectMany(post => post.Value<IEnumerable<IPublishedContent>>("tags") ?? Enumerable.Empty<IPublishedContent>())
+                     .GroupBy(tag => tag.Name)
+                      .Select(group => group.First())
+                        .ToList();
+
+}
+@Html.GetBlockListHtml(Model?.RenderComponents)
+
+<section class="cards">
+    <div class="container">
+        @if (allTags != null && allTags?.Count() > 0)
+        {
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                @foreach (var tag in allTags)
+                {
+                    <button class="filter-btn" data-filter="@tag.Name.ToLower()">@tag.Name</button>
+                }
+            </div>
+        }
+
+        <div class="cards-grid">
+            @foreach (var post in posts)
+            {
+                var postDateValue = post.Value<DateTime?>("postDate");
+                var postUrl = post.Url() ?? "";
+                var image = post.Value<IPublishedContent>("mainImage");
+                var imageUrl = image?.Url();
+                var postDescription = post.Value("excerpt");
+                var tags = post.Value<IEnumerable<IPublishedContent>>("tags");
+                var tagNamesStr = tags != null ? string.Join(",", tags.Select(t => t.Name.ToLower())) : "";
+
+                        <div class="card" data-tags="@tagNamesStr">
+                    @if (!imageUrl.IsNullOrWhiteSpace())
+                    {
+                        <div class="card-image">
+                            <img src="@imageUrl.GetCropUrl()" alt="@post.Value("title")" />
+                        </div>
+                    }
+                    <div class="card-content">
+                        @if (!string.IsNullOrWhiteSpace(@post.Value("title").ToString()))
+                        {
+                            <h3 class="card-title">
+                                <a href="@post.Url()">@post.Value("title")</a>
+                            </h3>
+                        }
+                        @if ((!string.IsNullOrWhiteSpace(postDescription?.ToString())))
+                        {
+                            <p class="card-description">@postDescription</p>
+                        }
+                        @if (tags != null && tags.Any())
+                        {
+                            <div class="card-technologies">
+                                @foreach (var tag in tags)
+                                {
+                                    <span class="tech-tag">@tag.Name</span>
+                                }
+                            </div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(post.Url()))
+                        {
+                            <div class="card-links">
+                                <a class="btn-small" href="@postUrl" target="_blank">Read more</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterButtons = document.querySelectorAll(".filter-btn");
+        const cards = document.querySelectorAll(".card");
+
+        filterButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const filter = button.getAttribute("data-filter");
+
+                
+                filterButtons.forEach(btn => btn.classList.remove("active"));
+                button.classList.add("active");
+
+               
+                cards.forEach(card => {
+                    const tags = card.getAttribute("data-tags").toLowerCase().split(",");
+                    const show = filter === "all" || tags.includes(filter.toLowerCase());
+                    card.style.display = show ? "block" : "none";
+                });
+            });
+        });
+    });
+</script>
+

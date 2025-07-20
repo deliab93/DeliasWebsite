@@ -20,7 +20,7 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel
+	public partial class Home : PublishedContentModel, ISettingsAndSeo
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -128,5 +128,59 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("socialMediaItems")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel SocialMediaItems => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "socialMediaItems");
+
+		///<summary>
+		/// Canonical url
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("canonicalUrl")]
+		public virtual string CanonicalUrl => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetCanonicalUrl(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hide From Navigation
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromNavigation")]
+		public virtual bool HideFromNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromNavigation(this, _publishedValueFallback);
+
+		///<summary>
+		/// Hide from sitemp
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[ImplementPropertyType("hideFromSitemp")]
+		public virtual bool HideFromSitemp => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemp(this, _publishedValueFallback);
+
+		///<summary>
+		/// Meta description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metaDescription")]
+		public virtual string MetaDescription => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetMetaDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// SEO image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("openGraphImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops OpenGraphImage => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetOpenGraphImage(this, _publishedValueFallback);
+
+		///<summary>
+		/// Page title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("pageTitle")]
+		public virtual string PageTitle => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetPageTitle(this, _publishedValueFallback);
+
+		///<summary>
+		/// Tags
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("tags")]
+		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent> Tags => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetTags(this, _publishedValueFallback);
 	}
 }

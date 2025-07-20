@@ -1,9 +1,7 @@
 using DeliasWebsite.Core.Features.Contact;
 using DeliasWebsite.Core.Features.Search;
-using Microsoft.Extensions.Options;
-using Umbraco.Cms.Core.Configuration.Models; 
-using Umbraco.Cms.Core.Mail;
-
+using DeliasWebsite.Core.Features.Seo;
+using Umbraco.Cms.Web.Common.Routing;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
@@ -12,9 +10,27 @@ builder.CreateUmbracoBuilder()
     .AddComposers()
     .Build();
 
-builder.Services.AddControllers()
-    .AddApplicationPart(typeof(ContactFormController).Assembly);
+builder.Services.AddControllersWithViews()
+    .AddApplicationPart(typeof(ContactFormController).Assembly)
+    .AddApplicationPart(typeof(SitemapController).Assembly);
 builder.Services.AddScoped<ISearchService, SearchService>();
+builder.Services.AddSingleton<ISitemapXmlBuilder, SitemapXmlBuilder>();
+builder.Services.Configure<UmbracoRequestOptions>(options =>
+{
+    string[] allowList = new[] { "/sitemap.xml", "/robots.txt" };
+    options.HandleAsServerSideRequest = httpRequest =>
+    {
+        foreach (string route in allowList)
+        {
+            if (httpRequest.Path.StartsWithSegments(route))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    };
+});
 
 WebApplication app = builder.Build();
 
@@ -31,6 +47,22 @@ app.UseUmbraco()
     .WithEndpoints(u =>
     {
         u.UseInstallerEndpoints();
+        u.EndpointRouteBuilder.MapControllerRoute(
+            nameof(RobotsTxtController),
+            RobotsTxtController.RoutePattern,
+            new
+            {
+                Controller = ControllerExtensions.GetControllerName<RobotsTxtController>(),
+                Action = nameof(RobotsTxtController.Index)
+            });
+        u.EndpointRouteBuilder.MapControllerRoute(
+                      nameof(SitemapController),
+                      SitemapController.RoutePattern,
+                      new
+                      {
+                          Controller = ControllerExtensions.GetControllerName<SitemapController>(),
+                          Action = nameof(SitemapController.Index)
+                      });
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });

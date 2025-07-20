@@ -25,7 +25,11 @@ namespace DeliasWebsite.Core.Features.Search
             IEnumerable<string> ids = Array.Empty<string>();
             if (!string.IsNullOrEmpty(query) && _examineManager.TryGetIndex("ExternalIndex", out IIndex? index))
             {
-                var results = index.Searcher.Search(query);
+
+                var results = index.Searcher
+                             .CreateQuery()
+                             .ManagedQuery($"{query}*")
+                             .Execute();
                 if (results?.Any() ?? false)
                 {
                     ids = results.Select(x => x.Id);
@@ -40,7 +44,7 @@ namespace DeliasWebsite.Core.Features.Search
                     if (!string.IsNullOrEmpty(id) && int.TryParse(id, out int contentId))
                     {
                         var content = contentCache?.GetById(contentId);
-                        if (content != null && !content.Value<bool>("HideFromSearch"))
+                        if (content != null && !content.Value<bool>("HideFromSearch") && content.ContentType.Alias != "contactForm")
                         {
                             result = result.Append(content);
                         }

@@ -1,9 +1,9 @@
-.projects {
+.cards {
   padding: var(--spacing-24) var(--spacing-4);
   background-color: var(--bg-primary);
 
   [data-theme="dark"] & {
-    background-color: rgb(17, 24, 39);
+    background-color: var(--bg-primary);
   }
 
   .hero__background {
@@ -129,7 +129,7 @@
     }
   }
 
-  .projects-grid {
+  .cards-grid {
    display: grid;
   justify-content: center; // centers entire grid when there's unused space
   gap: var(--spacing-8);
@@ -143,14 +143,14 @@
     }
 
     @media (min-width: 1024px) {
-  .projects-grid {
+  .cards-grid {
     justify-content: center;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
   }
   }
 
-  .project-card {
+  .card {
     background-color: var(--bg-primary);
     border-radius: var(--radius-xl);
     overflow: hidden;
@@ -170,7 +170,7 @@
       border-color: rgb(55, 65, 81);
     }
 
-    .project-image {
+    .card-image {
       position: relative;
       overflow: hidden;
       height: 12rem;
@@ -182,7 +182,7 @@
         transition: transform 0.5s ease;
       }
 
-      .project-overlay {
+      .card-overlay {
         position: absolute;
         inset: 0;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
@@ -227,22 +227,32 @@
           transform: scale(1.05);
         }
 
-        .project-overlay {
+        .card-overlay {
           opacity: 1;
         }
       }
     }
 
-    .project-content {
+    .card-content {
       padding: var(--spacing-6);
 
-      .project-title {
+      .card-title {
         font-size: 1.25rem;
         font-weight: 700;
         margin-bottom: var(--spacing-2);
+        color: var(--accent-color);
+        a{
+           text-decoration: none;
+            color: var(--text-primary);
+            &:hover {
+          color: var(--accent-color);
+           text-decoration: underline;
+         }
+        }
+         
       }
 
-      .project-description {
+      .card-description {
         color: var(--text-muted);
         font-size: 0.875rem;
         margin-bottom: var(--spacing-4);
@@ -252,7 +262,7 @@
         }
       }
 
-      .project-technologies {
+      .card-technologies {
         display: flex;
         flex-wrap: wrap;
         gap: var(--spacing-2);
@@ -279,7 +289,13 @@
         }
       }
 
-      .project-links {
+      .card-date {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-3);
+    display: block;
+  }
+      .card-links {
         display: flex;
         justify-content: space-between;
 
