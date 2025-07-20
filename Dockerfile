@@ -1,18 +1,25 @@
 # Build stage
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-WORKDIR /app
+WORKDIR /src
 
-COPY *.sln ./
-COPY DeliasWebsite/*.csproj ./DeliasWebsite.Web/
-COPY DeliasWebsite.Core/*.csproj ./DeliasWebsite.Core/
+# Copy solution and project files
+COPY DeliasWebsite.sln ./
+COPY DeliasWebsite/DeliasWebsite.csproj DeliasWebsite/
+COPY DeliasWebsite.Core/DeliasWebsite.Core.csproj DeliasWebsite.Core/
+
+# Restore dependencies
 RUN dotnet restore
 
+# Copy the rest of the source
 COPY . .
-RUN dotnet publish DeliasWebsite/DeliasWebsite.Web.csproj -c Release -o /out
+
+# Publish the web project
+WORKDIR /src/DeliasWebsite
+RUN dotnet publish -c Release -o /app/publish
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /out .
+COPY --from=build /app/publish .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "DeliasWebsite.Web.dll"]
+ENTRYPOINT ["dotnet", "DeliasWebsite.dll"]
