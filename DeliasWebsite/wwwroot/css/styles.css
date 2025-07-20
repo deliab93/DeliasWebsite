@@ -29,6 +29,7 @@
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
+  outline: none;
 }
 .navbar .logo .highlight {
   color: var(--primary-color);
@@ -872,6 +873,10 @@
 [data-theme=dark] .cards {
   background-color: var(--bg-primary);
 }
+.cards p {
+  padding: var(--spacing-2) var(--spacing-2);
+  font-weight: 700;
+}
 .cards .hero__background {
   position: absolute;
   inset: 0;
@@ -1675,13 +1680,12 @@
 }
 
 .rte {
-  margin-top: 2rem;
   font-family: "Inter", sans-serif;
   line-height: 1.75;
   color: var(--text-primary);
   background-color: var(--bg-primary);
   margin: 0 auto;
-  padding: var(--spacing-6) var(--spacing-20);
+  padding: var(--spacing-4) 0;
 }
 .cards .rte {
   padding: var(--spacing-8) 0;
@@ -1711,8 +1715,10 @@
   font-size: 1rem;
 }
 .rte p {
-  margin-bottom: 1.25em;
   color: var(--text-primary);
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: var(--spacing-2) 0;
 }
 .rte a {
   color: var(--primary-color);
@@ -2088,6 +2094,32 @@
   margin: 0 auto;
   color: var(--text-primary);
 }
+.article p {
+  color: var(--text-primary);
+  margin-top: var(--spacing-6);
+  max-width: 1200px;
+  padding: var(--spacing-2) var(--spacing-2);
+}
+.article .article-tags {
+  margin-top: 4em;
+}
+.article .article-tags .article-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem var(--spacing-2);
+  border-radius: var(--radius-xl);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+}
+[data-theme=dark] .article .article-tags .article-tag {
+  background-color: rgba(37, 99, 235, 0.4);
+  color: rgb(147, 197, 253);
+}
+.article .article-tags .article-tag svg {
+  margin-right: 0.25rem;
+}
 .article .article-header {
   margin-bottom: var(--spacing-10);
   text-align: center;
@@ -2096,7 +2128,8 @@
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--spacing-4);
+  margin: var(--spacing-4) 0;
+  padding-top: var(--spacing-24);
 }
 .article .article-header .article-meta {
   font-size: 0.875rem;

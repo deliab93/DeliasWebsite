@@ -448,6 +448,84 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authorization/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "8.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.0",
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authorization.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Authorization": "8.0.0",
+          "Microsoft.AspNetCore.Components.Analyzers": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Analyzers/8.0.0": {
+        "type": "package",
+        "build": {
+          "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets": {}
+        }
+      },
+      "Microsoft.AspNetCore.Components.Forms/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Forms.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Components.Web/8.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components": "8.0.0",
+          "Microsoft.AspNetCore.Components.Forms": "8.0.0",
+          "Microsoft.Extensions.DependencyInjection": "8.0.0",
+          "Microsoft.Extensions.Primitives": "8.0.0",
+          "Microsoft.JSInterop": "8.0.0",
+          "System.IO.Pipelines": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Components.Web.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/8.0.11": {
         "type": "package",
         "compile": {
@@ -609,6 +687,19 @@
         },
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.JsonPatch.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.AspNetCore.Metadata.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Metadata.dll": {
             "related": ".xml"
           }
         }
@@ -1770,6 +1861,19 @@
         },
         "runtime": {
           "lib/net6.0/Microsoft.IO.RecyclableMemoryStream.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.JSInterop/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Microsoft.JSInterop.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.JSInterop.dll": {
             "related": ".xml"
           }
         }
@@ -3672,6 +3776,22 @@
           "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
         }
       },
+      "System.IO.Pipelines/8.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/System.IO.Pipelines.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/net6.0/_._": {}
+        }
+      },
       "System.Linq/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -5112,6 +5232,114 @@
             "copyToOutput": false
           }
         }
+      },
+      "uSync/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "uSync.BackOffice": "13.2.7",
+          "uSync.BackOffice.Assets": "13.2.7",
+          "uSync.History": "13.2.7"
+        },
+        "compile": {
+          "lib/net8.0/uSync.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/uSync.dll": {}
+        }
+      },
+      "uSync.BackOffice/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "uSync.Community.Contrib": "13.2.7",
+          "uSync.Core": "13.2.7"
+        },
+        "compile": {
+          "lib/net8.0/uSync.BackOffice.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/uSync.BackOffice.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "uSync.BackOffice.Assets/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Web": "8.0.0",
+          "uSync.BackOffice": "13.2.7",
+          "uSync.BackOffice.Targets": "13.2.7"
+        },
+        "compile": {
+          "lib/net8.0/uSync.BackOffice.Assets.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/uSync.BackOffice.Assets.dll": {}
+        },
+        "contentFiles": {
+          "contentFiles/any/any/_._": {
+            "buildAction": "None",
+            "codeLanguage": "any",
+            "copyToOutput": false
+          }
+        },
+        "build": {
+          "buildTransitive/uSync.BackOffice.Assets.props": {},
+          "buildTransitive/uSync.BackOffice.Assets.targets": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/uSync.BackOffice.Assets.props": {}
+        }
+      },
+      "uSync.BackOffice.Targets/13.2.7": {
+        "type": "package",
+        "build": {
+          "buildTransitive/uSync.BackOffice.Targets.props": {}
+        }
+      },
+      "uSync.Community.Contrib/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "uSync.Core": "13.2.7"
+        },
+        "compile": {
+          "lib/net8.0/uSync.Community.Contrib.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/uSync.Community.Contrib.dll": {}
+        }
+      },
+      "uSync.Core/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "Umbraco.Cms.Web.BackOffice": "[13.0.0, 14.0.0)",
+          "Umbraco.Cms.Web.Website": "[13.0.0, 14.0.0)"
+        },
+        "compile": {
+          "lib/net8.0/uSync.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/uSync.Core.dll": {}
+        }
+      },
+      "uSync.History/13.2.7": {
+        "type": "package",
+        "dependencies": {
+          "uSync.BackOffice": "13.2.7"
+        },
+        "compile": {
+          "lib/net8.0/uSync.History.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/uSync.History.dll": {}
+        },
+        "build": {
+          "buildTransitive/uSync.History.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/uSync.History.props": {}
+        }
       }
     }
   },
@@ -5723,6 +5951,86 @@
         "messagepack.annotations.nuspec"
       ]
     },
+    "Microsoft.AspNetCore.Authorization/8.0.0": {
+      "sha512": "OGIGJMnlWvQgcweHcv1Mq/P24Zx/brUHeEdD05NzqkSXmQSnFomTvVyCuBtCXT4JPfv2m70y1RSocmd9bIbJRg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authorization/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net462/Microsoft.AspNetCore.Authorization.xml",
+        "lib/net8.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Authorization.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Authorization.xml",
+        "microsoft.aspnetcore.authorization.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.authorization.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components/8.0.0": {
+      "sha512": "kqspqWo3lT+rrSd39kvrV7SZYl0znYZQbQ8SJaHjDA8ffMPV6BkfVe0i6LvxRPwq/agwSWdIDq2j4x+78Frypg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net8.0/Microsoft.AspNetCore.Components.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Components.xml",
+        "microsoft.aspnetcore.components.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.components.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Analyzers/8.0.0": {
+      "sha512": "lJMa9kQDw3vkqcMMbuicIpyax7QH6imQFbLRzVqJzrGs5LN954IPaJVkDzRCEXFVAN24Cml6g4mEF3b0D7Oa+Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.analyzers/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "analyzers/dotnet/cs/Microsoft.AspNetCore.Components.Analyzers.dll",
+        "build/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "buildTransitive/netstandard2.0/Microsoft.AspNetCore.Components.Analyzers.targets",
+        "microsoft.aspnetcore.components.analyzers.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.components.analyzers.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Forms/8.0.0": {
+      "sha512": "iiYB/7Sl/vTURO4EiTUCmfIXujlJOl+Gh7nknCFhvFQ+kKMFFXYcrszYwLN9aQSolpswc/A9a78KL59/UIezig==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.forms/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Forms.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Forms.xml",
+        "microsoft.aspnetcore.components.forms.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.components.forms.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.Web/8.0.0": {
+      "sha512": "aokUKvFoNqxR6bf0+iKrDfQ79OLHWYn5UGYp5MU65/il1vuRK7MAF18oGj7QgiZJUu3cMAZjCFkHbsWLhQxCsA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.web/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Web.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Components.Web.xml",
+        "microsoft.aspnetcore.components.web.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.components.web.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/8.0.11": {
       "sha512": "8OW1VlxT6m9pitB7fR/YfNbuQ0BxBJhnXde+qlr4NXEoODhE2hRxHm8rgUgxLNywftXJK/OfOJw5w5nLCXXC1w==",
       "type": "package",
@@ -5876,6 +6184,25 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.xml",
         "microsoft.aspnetcore.jsonpatch.8.0.11.nupkg.sha512",
         "microsoft.aspnetcore.jsonpatch.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Metadata/8.0.0": {
+      "sha512": "OmuSztiZMitRTYlbMNDkBk3BinSsVcOApSNBAsrw+KYNJh6ALarPhWLlKdtvMgrKzpyCY06xtLAjTmQLURHSlQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.metadata/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net462/Microsoft.AspNetCore.Metadata.xml",
+        "lib/net8.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/net8.0/Microsoft.AspNetCore.Metadata.xml",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Metadata.xml",
+        "microsoft.aspnetcore.metadata.8.0.0.nupkg.sha512",
+        "microsoft.aspnetcore.metadata.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Mvc.NewtonsoftJson/8.0.11": {
@@ -8310,6 +8637,21 @@
         "lib/netstandard2.1/Microsoft.IO.RecyclableMemoryStream.xml",
         "microsoft.io.recyclablememorystream.3.0.1.nupkg.sha512",
         "microsoft.io.recyclablememorystream.nuspec"
+      ]
+    },
+    "Microsoft.JSInterop/8.0.0": {
+      "sha512": "qQqASbHxWIddssdEBKUQ/49j21SEstiho6VAepPQa9eISLCBCE6wq0m3YaB6cpdF5U+AWX5F3FvDfmssql3xtw==",
+      "type": "package",
+      "path": "microsoft.jsinterop/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net8.0/Microsoft.JSInterop.dll",
+        "lib/net8.0/Microsoft.JSInterop.xml",
+        "microsoft.jsinterop.8.0.0.nupkg.sha512",
+        "microsoft.jsinterop.nuspec"
       ]
     },
     "Microsoft.NET.StringTools/17.6.3": {
@@ -11462,6 +11804,35 @@
         "ref/xamarinwatchos10/_._",
         "system.io.filesystem.primitives.4.3.0.nupkg.sha512",
         "system.io.filesystem.primitives.nuspec"
+      ]
+    },
+    "System.IO.Pipelines/8.0.0": {
+      "sha512": "FHNOatmUq0sqJOkTx+UF/9YK1f180cnW5FVqnQMvYUN0elp6wFzbtPSiqbo1/ru8ICp43JM1i7kKkk6GsNGHlA==",
+      "type": "package",
+      "path": "system.io.pipelines/8.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/net461/System.IO.Pipelines.targets",
+        "buildTransitive/net462/_._",
+        "buildTransitive/net6.0/_._",
+        "buildTransitive/netcoreapp2.0/System.IO.Pipelines.targets",
+        "lib/net462/System.IO.Pipelines.dll",
+        "lib/net462/System.IO.Pipelines.xml",
+        "lib/net6.0/System.IO.Pipelines.dll",
+        "lib/net6.0/System.IO.Pipelines.xml",
+        "lib/net7.0/System.IO.Pipelines.dll",
+        "lib/net7.0/System.IO.Pipelines.xml",
+        "lib/net8.0/System.IO.Pipelines.dll",
+        "lib/net8.0/System.IO.Pipelines.xml",
+        "lib/netstandard2.0/System.IO.Pipelines.dll",
+        "lib/netstandard2.0/System.IO.Pipelines.xml",
+        "system.io.pipelines.8.0.0.nupkg.sha512",
+        "system.io.pipelines.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Linq/4.3.0": {
@@ -17164,6 +17535,150 @@
         "umbraco.csharptest.net.collections.15.0.0.nupkg.sha512",
         "umbraco.csharptest.net.collections.nuspec"
       ]
+    },
+    "uSync/13.2.7": {
+      "sha512": "iJGqjXRoc7LTBLfthggdd40cmtPOMo4943T3ojFjmEbiw6uE/GMod2JMv4D5z1uiuycvrWa8UG/Ke6wV2h5Cug==",
+      "type": "package",
+      "path": "usync/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/uSync.dll",
+        "readme.md",
+        "readme.txt",
+        "usync-logo.png",
+        "usync.13.2.7.nupkg.sha512",
+        "usync.nuspec"
+      ]
+    },
+    "uSync.BackOffice/13.2.7": {
+      "sha512": "wIEeTtcG2qxl/rrGPEhoo3XRsYqDIoqPKQsZB+EBSSj1eYhSLyEk34XC0RLB8ER8Zj4mrZ452ePxi9/18zlOZQ==",
+      "type": "package",
+      "path": "usync.backoffice/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/uSync.BackOffice.dll",
+        "lib/net8.0/uSync.BackOffice.xml",
+        "readme.md",
+        "usync-logo.png",
+        "usync.backoffice.13.2.7.nupkg.sha512",
+        "usync.backoffice.nuspec"
+      ]
+    },
+    "uSync.BackOffice.Assets/13.2.7": {
+      "sha512": "MX97RVtx/HHwTdsIRUT+g5opDQpVhG0ICb118OmG3sunLPUUniQ5j4WbimLitOqijUECJ0o8LtQvjzG9YywiaA==",
+      "type": "package",
+      "path": "usync.backoffice.assets/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "build/uSync.BackOffice.Assets.props",
+        "buildMultiTargeting/uSync.BackOffice.Assets.props",
+        "buildTransitive/uSync.BackOffice.Assets.props",
+        "buildTransitive/uSync.BackOffice.Assets.targets",
+        "content/App_Plugins/uSync/config/appsettings-usync-schema.json",
+        "contentFiles/any/net8.0/App_Plugins/uSync/config/appsettings-usync-schema.json",
+        "lib/net8.0/uSync.BackOffice.Assets.dll",
+        "readme.md",
+        "staticwebassets/uSync/Lang/cy.xml",
+        "staticwebassets/uSync/Lang/da-DK.xml",
+        "staticwebassets/uSync/Lang/en-us.xml",
+        "staticwebassets/uSync/Lang/fr.xml",
+        "staticwebassets/uSync/Lang/nl-nl.xml",
+        "staticwebassets/uSync/Lang/pt.xml",
+        "staticwebassets/uSync/Lang/sv-SE.xml",
+        "staticwebassets/uSync/addons.txt",
+        "staticwebassets/uSync/backoffice/usync/dashboard.html",
+        "staticwebassets/uSync/boot/TurbineBlades.jpg",
+        "staticwebassets/uSync/boot/nonodes.css",
+        "staticwebassets/uSync/boot/usynclogo.png",
+        "staticwebassets/uSync/changedialog.html",
+        "staticwebassets/uSync/components/usync.progressview.html",
+        "staticwebassets/uSync/components/usync.reportview.html",
+        "staticwebassets/uSync/config/appsettings-usync-schema.json",
+        "staticwebassets/uSync/dialogs/apply.html",
+        "staticwebassets/uSync/itemdialog.html",
+        "staticwebassets/uSync/settings/default.html",
+        "staticwebassets/uSync/settings/expansion.html",
+        "staticwebassets/uSync/settings/importDialog.html",
+        "staticwebassets/uSync/settings/overlay.html",
+        "staticwebassets/uSync/settings/settings.html",
+        "staticwebassets/uSync/settings/settings.overlay.html",
+        "staticwebassets/uSync/usync.13.2.7.min.css",
+        "staticwebassets/uSync/usync.13.2.7.min.js",
+        "staticwebassets/uSync/usync.13.2.7.min.js.map",
+        "usync-logo.png",
+        "usync.backoffice.assets.13.2.7.nupkg.sha512",
+        "usync.backoffice.assets.nuspec"
+      ]
+    },
+    "uSync.BackOffice.Targets/13.2.7": {
+      "sha512": "T/A0DcgFMwf6w48CJihjBWaKIgH5OwiOt/6vIwLBrP4OF0Hx+XtWhC/0L8cHdrtr2i+83EnxIMoyaTF+dR6x+A==",
+      "type": "package",
+      "path": "usync.backoffice.targets/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "appsettings-schema.usync.json",
+        "buildTransitive/uSync.BackOffice.Targets.props",
+        "readme.md",
+        "usync-logo.png",
+        "usync.backoffice.targets.13.2.7.nupkg.sha512",
+        "usync.backoffice.targets.nuspec"
+      ]
+    },
+    "uSync.Community.Contrib/13.2.7": {
+      "sha512": "4U+SCxOOImuRmYYkTmoFG6iWxw+Hqqsd7H4bse8o+du2tkOBZRMeQUsOvr5zyVw7bFYQfXM2G0k4k7cOLKdMMg==",
+      "type": "package",
+      "path": "usync.community.contrib/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/uSync.Community.Contrib.dll",
+        "readme.md",
+        "usync-logo.png",
+        "usync.community.contrib.13.2.7.nupkg.sha512",
+        "usync.community.contrib.nuspec"
+      ]
+    },
+    "uSync.Core/13.2.7": {
+      "sha512": "gnwUiow+3/s3Jt5gfZTLG3wVz8BPZVqakl618yRwYT4syONnS0NwvdvhGK3wtma0Stqa3MbXDcQOIW3/UuhJkw==",
+      "type": "package",
+      "path": "usync.core/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/uSync.Core.dll",
+        "readme.md",
+        "usync-logo.png",
+        "usync.core.13.2.7.nupkg.sha512",
+        "usync.core.nuspec"
+      ]
+    },
+    "uSync.History/13.2.7": {
+      "sha512": "hbCTgHlqIAUjTpzkZ6pJaxeJow4u/hhb6Oj3E+PBDx86ZYLo0fezLN3Safl3rosmiiAytbW9oSUtuLB53qNbgQ==",
+      "type": "package",
+      "path": "usync.history/13.2.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "build/uSync.History.props",
+        "buildMultiTargeting/uSync.History.props",
+        "buildTransitive/uSync.History.props",
+        "lib/net8.0/uSync.History.dll",
+        "staticwebassets/uSyncHistory/Lang/en-us.xml",
+        "staticwebassets/uSyncHistory/dashboard.controller.js",
+        "staticwebassets/uSyncHistory/dashboard.html",
+        "staticwebassets/uSyncHistory/history.html",
+        "usync-logo.png",
+        "usync.history.13.2.7.nupkg.sha512",
+        "usync.history.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -17171,7 +17686,9 @@
       "Microsoft.AspNetCore.Mvc.Razor.Extensions >= 6.0.0",
       "Microsoft.Extensions.Identity.Core >= 8.0.11",
       "Umbraco.Cms >= 13.9.1",
-      "Umbraco.Cms.Core >= 13.9.1"
+      "Umbraco.Cms.Core >= 13.9.1",
+      "uSync >= 13.2.7",
+      "uSync.Core >= 13.2.7"
     ]
   },
   "packageFolders": {
@@ -17239,6 +17756,14 @@
           "Umbraco.Cms.Core": {
             "target": "Package",
             "version": "[13.9.1, )"
+          },
+          "uSync": {
+            "target": "Package",
+            "version": "[13.2.7, )"
+          },
+          "uSync.Core": {
+            "target": "Package",
+            "version": "[13.2.7, )"
           }
         },
         "imports": [
@@ -17252,12 +17777,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.18, 8.0.18]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.18, 8.0.18]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.18, 8.0.18]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

@@ -4,6 +4,33 @@
   margin: 0 auto;
   color: var(--text-primary);
 
+  p{
+    color: var(--text-primary);
+    margin-top: var(--spacing-6);
+    max-width: 1200px;
+    padding: var(--spacing-2) var(--spacing-2);
+  }
+  .article-tags{
+      margin-top: 4em;
+      .article-tag{
+          display: inline-flex;
+          align-items: center;
+          padding: 0.125rem var(--spacing-2);
+          border-radius: var(--radius-xl);
+          font-size: 0.75rem;
+          font-weight: 500;
+          background-color: rgba(37, 99, 235, 0.1);
+          color: var(--primary-color);       
+
+          [data-theme="dark"] & {
+            background-color: rgba(37, 99, 235, 0.4);
+            color: rgb(147, 197, 253);
+          }
+          svg {
+            margin-right: 0.25rem;
+          }       
+    }
+  }
   .article-header {
     margin-bottom: var(--spacing-10);
     text-align: center;
@@ -12,7 +39,8 @@
       font-size: 2.5rem;
       font-weight: 700;
       color: var(--text-primary);
-      margin-bottom: var(--spacing-4);
+      margin: var(--spacing-4) 0;
+      padding-top: var(--spacing-24);
     }
 
     .article-meta {

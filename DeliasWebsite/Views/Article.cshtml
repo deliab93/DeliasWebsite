@@ -12,10 +12,24 @@
             }        
             <time datetime="@Model?.PostDate">@Model?.PostDate.ToString("MMMM dd, yyyy")</time>
         </div>
+        @if (!string.IsNullOrEmpty(Model?.Excerpt))
+        {
+            <p class="article-excerpt">@Model.Excerpt</p>
+        }
     </header>
     <img src="@Model?.MainImage?.Url()" alt="@Model?.Title" class="article-image" />
     <div class="article-content">
         @Html.Raw(Model.BodyText)
     </div>
+        <div class="article-tags">
+            @if (Model?.Tags != null && Model.Tags.Any())
+            {
+                <span>Tags: </span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <div class="article-tag">@tag.Name</div>
+                }
+            }
+       </div>
 </main>
 

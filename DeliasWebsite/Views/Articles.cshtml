@@ -16,9 +16,11 @@
 
 <section class="cards">
     <div class="container">
+      
         @if (allTags != null && allTags?.Count() > 0)
         {
             <div class="filter-buttons">
+                <p>Filter by category:</p>
                 <button class="filter-btn active" data-filter="all">All</button>
                 @foreach (var tag in allTags)
                 {

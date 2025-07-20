@@ -18,6 +18,17 @@
   <ItemGroup>
     <Content Remove="Views\SearchPage.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\media\25hoctvl\pexels-pixabay-38547.jpg" />
+    <Content Include="wwwroot\media\c4lgbmv0\pexels-luis-gomes-166706-546819.jpg" />
+    <Content Include="wwwroot\media\hfvo4vrw\pexels-luis-gomes-166706-546819.jpg" />
+    <Content Include="wwwroot\media\hnxlave2\pexels-cookiecutter-1148820.jpg" />
+    <Content Include="wwwroot\media\iz5phmuj\pexels-pixabay-356056.jpg" />
+    <Content Include="wwwroot\media\l5uh3t2t\dff29c47-514d-446a-a1ac-57995c6293c2.jpeg" />
+    <Content Include="wwwroot\media\ljxnk2nd\pexels-photo-2379004.jpeg" />
+    <Content Include="wwwroot\media\llglzwl2\pexels-divinetechygirl-1181325.jpg" />
+    <Content Include="wwwroot\media\xouppmhp\pexels-ron-lach-97575563.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="13.9.1" />
@@ -27,11 +38,17 @@
     <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
     <PackageReference Include="Umbraco.Cms.Core" Version="13.9.1" />
+    <PackageReference Include="uSync" Version="13.2.7" />
+    <PackageReference Include="uSync.Core" Version="13.2.7" />
     <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\media\4ttnrqlv\oip.webp" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -43,6 +60,10 @@
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
   </PropertyGroup>
-
+	<ItemGroup>
+		<Content Update="web.config">
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
 
 </Project>

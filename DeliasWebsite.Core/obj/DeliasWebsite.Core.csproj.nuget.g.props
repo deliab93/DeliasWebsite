@@ -15,6 +15,9 @@
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.3.4\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers\3.3.4\buildTransitive\Microsoft.CodeAnalysis.Analyzers.props')" />
+    <Import Project="$(NuGetPackageRoot)usync.history\13.2.7\buildTransitive\uSync.History.props" Condition="Exists('$(NuGetPackageRoot)usync.history\13.2.7\buildTransitive\uSync.History.props')" />
+    <Import Project="$(NuGetPackageRoot)usync.backoffice.targets\13.2.7\buildTransitive\uSync.BackOffice.Targets.props" Condition="Exists('$(NuGetPackageRoot)usync.backoffice.targets\13.2.7\buildTransitive\uSync.BackOffice.Targets.props')" />
+    <Import Project="$(NuGetPackageRoot)usync.backoffice.assets\13.2.7\buildTransitive\uSync.BackOffice.Assets.props" Condition="Exists('$(NuGetPackageRoot)usync.backoffice.assets\13.2.7\buildTransitive\uSync.BackOffice.Assets.props')" />
     <Import Project="$(NuGetPackageRoot)umbraco.cms.staticassets\13.9.1\buildTransitive\Umbraco.Cms.StaticAssets.props" Condition="Exists('$(NuGetPackageRoot)umbraco.cms.staticassets\13.9.1\buildTransitive\Umbraco.Cms.StaticAssets.props')" />
     <Import Project="$(NuGetPackageRoot)umbraco.cms.targets\13.9.1\buildTransitive\Umbraco.Cms.Targets.props" Condition="Exists('$(NuGetPackageRoot)umbraco.cms.targets\13.9.1\buildTransitive\Umbraco.Cms.Targets.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\8.0.11\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\8.0.11\buildTransitive\net8.0\Microsoft.EntityFrameworkCore.props')" />
