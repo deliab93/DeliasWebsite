@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EIIWPXuR9jw=",
+  "dgSpecHash": "YIIq16wyX5M=",
   "success": true,
   "projectFilePath": "D:\\My Repos\\DeliasWebsite\\DeliasWebsite.Core\\DeliasWebsite.Core.csproj",
   "expectedPackageFiles": [
@@ -284,7 +284,23 @@
     "C:\\Users\\Delia BDM\\.nuget\\packages\\umbraco.cms.web.backoffice\\13.9.1\\umbraco.cms.web.backoffice.13.9.1.nupkg.sha512",
     "C:\\Users\\Delia BDM\\.nuget\\packages\\umbraco.cms.web.common\\13.9.1\\umbraco.cms.web.common.13.9.1.nupkg.sha512",
     "C:\\Users\\Delia BDM\\.nuget\\packages\\umbraco.cms.web.website\\13.9.1\\umbraco.cms.web.website.13.9.1.nupkg.sha512",
-    "C:\\Users\\Delia BDM\\.nuget\\packages\\umbraco.csharptest.net.collections\\15.0.0\\umbraco.csharptest.net.collections.15.0.0.nupkg.sha512"
+    "C:\\Users\\Delia BDM\\.nuget\\packages\\umbraco.csharptest.net.collections\\15.0.0\\umbraco.csharptest.net.collections.15.0.0.nupkg.sha512",
+    "C:\\Users\\Delia BDM\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.18\\microsoft.windowsdesktop.app.ref.8.0.18.nupkg.sha512",
+    "C:\\Users\\Delia BDM\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.18\\microsoft.netcore.app.ref.8.0.18.nupkg.sha512",
+    "C:\\Users\\Delia BDM\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.18\\microsoft.aspnetcore.app.ref.8.0.18.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'Umbraco.Cms' 13.9.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-pgvc-6h2p-q4f6",
+      "projectPath": "D:\\My Repos\\DeliasWebsite\\DeliasWebsite.Core\\DeliasWebsite.Core.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\My Repos\\DeliasWebsite\\DeliasWebsite.Core\\DeliasWebsite.Core.csproj",
+      "libraryId": "Umbraco.Cms",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

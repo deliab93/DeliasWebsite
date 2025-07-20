@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DeliasWebsite.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c8340b80df029b9dd4b8ece7611d692bd4379179")]
 [assembly: System.Reflection.AssemblyProductAttribute("DeliasWebsite.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DeliasWebsite.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
