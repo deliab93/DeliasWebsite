@@ -1718,7 +1718,7 @@
   color: var(--text-primary);
   margin: 0 auto;
   max-width: 1200px;
-  padding: var(--spacing-2) 0;
+  padding: var(--spacing-4);
 }
 .rte a {
   color: var(--primary-color);
@@ -3177,5 +3177,3 @@ body form .field-validation-error.text-danger {
     display: flex;
   }
 }
-
-/*# sourceMappingURL=styles.css.map */
