@@ -1716,6 +1716,9 @@
   max-width: 1200px;
   padding: var(--spacing-4);
 }
+.cards .rte p {
+  padding: var(--spacing-2) 0;
+}
 .rte a {
   color: var(--primary-color);
   text-decoration: underline;
