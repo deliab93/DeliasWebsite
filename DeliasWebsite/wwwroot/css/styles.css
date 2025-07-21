@@ -873,10 +873,6 @@
 [data-theme=dark] .cards {
   background-color: var(--bg-primary);
 }
-.cards p {
-  padding: var(--spacing-2) var(--spacing-2);
-  font-weight: 700;
-}
 .cards .hero__background {
   position: absolute;
   inset: 0;
@@ -3177,3 +3173,5 @@ body form .field-validation-error.text-danger {
     display: flex;
   }
 }
+
+/*# sourceMappingURL=styles.css.map */
