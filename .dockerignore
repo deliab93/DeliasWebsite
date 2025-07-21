@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+.vs/
+.git/
+.github/
+*.user
+*.suo
+*.log
+*.tmp
+*.md
+*.sh
+node_modules/
+FE/
