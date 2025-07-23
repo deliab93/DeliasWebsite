@@ -6,19 +6,6 @@
     <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Controllers\**" />
-    <Compile Remove="Views\SearchPage\**" />
-    <Content Remove="Controllers\**" />
-    <Content Remove="Views\SearchPage\**" />
-    <EmbeddedResource Remove="Controllers\**" />
-    <EmbeddedResource Remove="Views\SearchPage\**" />
-    <None Remove="Controllers\**" />
-    <None Remove="Views\SearchPage\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\SearchPage.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="wwwroot\media\25hoctvl\pexels-pixabay-38547.jpg" />
     <Content Include="wwwroot\media\c4lgbmv0\pexels-luis-gomes-166706-546819.jpg" />
     <Content Include="wwwroot\media\hfvo4vrw\pexels-luis-gomes-166706-546819.jpg" />
@@ -56,7 +43,11 @@
 		<ProjectReference Include="..\DeliasWebsite.Core\DeliasWebsite.Core.csproj" />
 	</ItemGroup>
 
-
+	<ItemGroup>
+		<Content Update="Views\**\*.cshtml">
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
     <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
