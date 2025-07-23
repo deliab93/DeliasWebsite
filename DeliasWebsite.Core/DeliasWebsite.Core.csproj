@@ -6,12 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Features\Search\SearchController.cs" />
-    <Compile Remove="Features\Search\SearchPageViewModel.cs" />
-    <Compile Remove="Features\Search\SearchResultModel.cs" />
-    <Compile Remove="Features\Search\SearchSurfaceController.cs" />
-  </ItemGroup>
+ 
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="6.0.0" />
