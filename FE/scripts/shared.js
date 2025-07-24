@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.navbar');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+    if (mobileMenu.classList.contains('open')) {
+        return;
+    }
+
 
   if (!navbar) return;
 
@@ -14,5 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.addEventListener('scroll', handleScroll);
-  handleScroll(); // run once on load
+  handleScroll(); 
 });
+
+
