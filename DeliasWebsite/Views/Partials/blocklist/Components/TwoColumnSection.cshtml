@@ -12,7 +12,7 @@
                 <div class="image-container">
                     <div class="image-wrapper">
                         <div class="image-overlay"></div>
-                        <img src="@image?.Url()"
+                        <img src="@($"{image?.Url()}?format=webp")"
                              alt="@image?.Name" />
                     </div>
                     <div class="decorative-blob blob-1"></div>

@@ -2,6 +2,8 @@ using DeliasWebsite.Core.Features.Contact;
 using DeliasWebsite.Core.Features.Search;
 using DeliasWebsite.Core.Features.Seo;
 using Microsoft.AspNetCore.HttpOverrides;
+using SixLabors.ImageSharp.Web.DependencyInjection;
+using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Web.Common.Routing;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ builder.Services.AddControllersWithViews()
     .AddApplicationPart(typeof(SitemapController).Assembly);
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddSingleton<ISitemapXmlBuilder, SitemapXmlBuilder>();
+builder.Services.AddImageSharp();
 builder.Services.Configure<UmbracoRequestOptions>(options =>
 {
     string[] allowList = new[] { "/sitemap.xml", "/robots.txt" };
@@ -73,5 +76,6 @@ app.UseUmbraco()
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });
+app.UseImageSharp();
 
 await app.RunAsync();

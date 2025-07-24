@@ -44,7 +44,7 @@
                     @if (!imageUrl.IsNullOrWhiteSpace())
                     {
                         <div class="card-image">
-                            <img src="@imageUrl.GetCropUrl()" alt="@post.Value("title")" />
+                            <img src="@($"{imageUrl.GetCropUrl()}?format=webp")" alt="@post.Value("title")" />
                         </div>
                     }
                     <div class="card-content">

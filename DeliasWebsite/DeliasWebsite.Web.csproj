@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Limbo.Umbraco.Seo" Version="13.0.1" />
+    <PackageReference Include="SixLabors.ImageSharp.Web" Version="3.1.5" />
     <PackageReference Include="Umbraco.Cms" Version="13.9.1" />
   </ItemGroup>
 
