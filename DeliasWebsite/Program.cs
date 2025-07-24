@@ -9,6 +9,7 @@ builder.CreateUmbracoBuilder()
     .AddBackOffice()
     .AddWebsite()
     .AddComposers()
+    .AddAzureBlobMediaFileSystem()
     .Build();
 
 builder.Services.AddControllersWithViews()
