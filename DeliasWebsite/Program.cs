@@ -1,6 +1,7 @@
 using DeliasWebsite.Core.Features.Contact;
 using DeliasWebsite.Core.Features.Search;
 using DeliasWebsite.Core.Features.Seo;
+using Microsoft.AspNetCore.HttpOverrides;
 using Umbraco.Cms.Web.Common.Routing;
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,11 @@ WebApplication app = builder.Build();
 await app.BootUmbracoAsync();
 
 //app.UseHttpsRedirection();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
+});
 
 app.UseUmbraco()
     .WithMiddleware(u =>
