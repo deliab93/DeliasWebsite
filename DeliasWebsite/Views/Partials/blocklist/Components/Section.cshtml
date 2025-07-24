@@ -8,7 +8,7 @@
         <div class="section-header">
             @if (!string.IsNullOrWhiteSpace(Model?.Content?.ButtonTextTop))
             {
-                  <div class="section-badge">@Model.Content.ButtonTextTop</div>
+                  <div class="section-badge">@Model?.Content?.ButtonTextTop</div>
             }
 
             @if (!(string.IsNullOrWhiteSpace(Model?.Content?.Title?.ToString())))
@@ -16,10 +16,10 @@
                <h2 class="section-title">@Html.Raw(Model?.Content?.Title)</h2>
             }
            
-            @if (!string.IsNullOrWhiteSpace(Model?.Content.Intro))
+            @if (!string.IsNullOrWhiteSpace(Model?.Content?.Intro))
             {
                <p class="section-description">
-                  @Model?.Content.Intro
+                  @Model?.Content?.Intro
                </p>
             }
         </div>

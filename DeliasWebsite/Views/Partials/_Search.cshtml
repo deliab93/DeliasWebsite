@@ -15,7 +15,7 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </button>
 
-        <!-- Input that will show/hide -->
+
         <form action="@searchResultsPage.Url()" method="get">
             <input type="search"
                    id="@searchId"
@@ -26,17 +26,4 @@
         </form>
     </div>
 }
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("searchToggleButton");
-        const formWrapper = document.getElementById("searchToggleForm");
 
-        toggleButton?.addEventListener("click", function () {
-            formWrapper?.classList.toggle("active");
-            const input = formWrapper?.querySelector(".search-toggle-input");
-            if (formWrapper.classList.contains("active")) {
-                input?.focus();
-            }
-        });
-    });
-</script>

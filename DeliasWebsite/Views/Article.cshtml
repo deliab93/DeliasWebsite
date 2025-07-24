@@ -20,13 +20,13 @@
     </header>
     <img src="@imgUrl" alt="@Model?.Title" class="article-image" />
     <div class="article-content">
-        @Html.Raw(Model.BodyText)
+        @Html.Raw(Model?.BodyText)
     </div>
         <div class="article-tags">
             @if (Model?.Tags != null && Model.Tags.Any())
             {
                 <span>Tags: </span>
-                @foreach (var tag in Model.Tags)
+                @foreach (var tag in Model?.Tags)
                 {
                     <div class="article-tag">@tag.Name</div>
                 }

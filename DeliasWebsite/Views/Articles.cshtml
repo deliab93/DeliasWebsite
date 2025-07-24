@@ -70,7 +70,7 @@
                         @if (!string.IsNullOrWhiteSpace(post.Url()))
                         {
                             <div class="card-links">
-                                <a class="btn-small" href="@postUrl" target="_blank">Read more</a>
+                                <a class="btn-small" aria-label="@post?.Name" href="@postUrl" target="_blank">Read more</a>
                             </div>
                         }
                     </div>

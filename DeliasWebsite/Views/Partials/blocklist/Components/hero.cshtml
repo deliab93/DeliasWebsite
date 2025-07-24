@@ -49,7 +49,7 @@
 
                 @if (socials != null && socials.Count > 0)
                 {
-                    @if (content.SideImage != null)
+                    @if (content?.SideImage != null)
                     {
                         <div class="hero-social">
                             @foreach (var item in socials)
@@ -72,8 +72,7 @@
 
             </div>
 
-            <!-- Hero Image -->
-            @if(content.SideImage != null)
+            @if(content?.SideImage != null)
             {
                 <div class="hero-image">
                     <div class="image-container">
@@ -92,7 +91,7 @@
           
         </div>
 
-        <!-- Scroll Indicator -->
+     
         @if (!content.HideScrollDownButton)
         {
             <div class="scroll-indicator">

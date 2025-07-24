@@ -2,8 +2,8 @@
 @using Umbraco.Cms.Web.Common.PublishedModels
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<CTabutton>>
 @{
-    var style = Model.Content.Style;
+    var style = Model?.Content?.Style;
     var button = Model?.Content?.CTA ;
 
 }
-<a href="@button?.Url" class="@style">@button?.Name</a>
+<a href="@button?.Url"  aria-label="@button?.Name" class="@style">@button?.Name</a>

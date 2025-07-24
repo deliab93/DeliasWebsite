@@ -7,7 +7,7 @@
 <header class="navbar transparent">
 
     <div class="container navbar-content">
-        <a href="@site?.Url()" class="logo">
+        <a href="@site?.Url()" aria-label="home" class="logo">
             <span class="highlight">Delias</span>Portfolio
         </a>
 
@@ -20,7 +20,7 @@
                         var hideFromNav = childPage.Value<bool>("hideFromNavigation") || childPage.ContentType.Alias.InvariantEquals("contactSubmissionsFolder") || childPage.ContentType.Alias.InvariantEquals("search");
                         if (childPage.IsPublished() && !hideFromNav)
                         {
-                            <a href="@childPage.Url()">@childPage.Name</a>
+                            <a href="@childPage.Url()" aria-label="@childPage.Name">@childPage.Name</a>
                         }                     
                     }
                 </nav>              
@@ -48,20 +48,25 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
+
     <div class="mobile-menu" id="mobileMenu">
         @if (children?.Count > 0 && children != null)
         {
             <nav class="mobile-nav-links">
                 @foreach (var childPage in children)
                 {
-                    <a href="@childPage.Url()">@childPage.Name</a>
+                    var hideFromNav = childPage.Value<bool>("hideFromNavigation") || childPage.ContentType.Alias.InvariantEquals("contactSubmissionsFolder") || childPage.ContentType.Alias.InvariantEquals("search");
+                    if (childPage.IsPublished() && !hideFromNav)
+                    {
+                        <a href="@childPage.Url()" aria-label="@childPage.Name">@childPage.Name</a>
+                    }
+                  
                 }
             </nav>
             
         }
         @await Html.PartialAsync("_Search")
-        <a href="@site?.HireMeUrl?.Url" class="btn btn-primary">Hire Me</a>
+        <a href="@site?.HireMeUrl?.Url" aria-label="hire me" class="btn btn-primary">Hire Me</a>
     </div>
 </header>
 

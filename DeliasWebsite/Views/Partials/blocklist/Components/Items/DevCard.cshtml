@@ -1,18 +1,18 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<DevCard>>
 @{
-    var skills = Model.Content.Skills;
-    var content = Model.Content;
+    var skills = Model?.Content?.Skills;
+    var content = Model?.Content;
 }
 @if (skills?.Count() > 0)
 {
     <div class="skill-category">
         <div class="category-header">
             <div class="category-icon">
-                <i class="@content.Icons"></i>
+                <i class="@content?.Icons"></i>
             </div>
             @if (!content.Title.IsNullOrWhiteSpace())
             {
-                <h3 class="category-title">@content.Title</h3>
+                <h3 class="category-title">@content?.Title</h3>
             }
             <br />
         </div>

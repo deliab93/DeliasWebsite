@@ -7,7 +7,7 @@
 @{
     var title = Model.Value<string>("pageTitle") ?? Model.Name;
     var description = Model.Value<string>("metaDescription") ?? string.Empty;
-    var canonical = Model.Value<string>("canonicalUrl") ?? Model.Url(mode: UrlMode.Absolute);
+    var canonical = Model.Url(mode: UrlMode.Absolute);
     var ogImage = Model.Value<IPublishedContent>("openGraphImage")?.Url();
     var tags = Model.Value<IEnumerable<IPublishedContent>>("tags");
     string keywords = string.Empty;
@@ -49,8 +49,7 @@
     <meta name="focus-keyword" content="@keywords" />
 
     <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/js/theme-toggle.js"></script>
-    <script src="/js/shared.js"></script>
+
 
 </head>
 <body>
@@ -61,43 +60,42 @@
     </div>
 </body>
 </html>
+
+
+
 <script>
     (function () {
-      const root = document.documentElement;
-      let isDark;
+        const root = document.documentElement;
+        let isDark = true; 
 
-      function setTheme(isDark) {
-        if (isDark) {
-          root.setAttribute('data-theme', 'dark');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          root.removeAttribute('data-theme');
-          localStorage.setItem('theme', 'light');
+        function setTheme(isDark) {
+            if (isDark) {
+                root.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                root.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+            }
         }
-      }
 
-      function initThemeToggle() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-        setTheme(isDark);
+        function initThemeToggle() {
+            const savedTheme = localStorage.getItem('theme');
 
-        document.querySelectorAll('.theme-toggle').forEach(btn => {
-          btn.addEventListener('click', () => {
-            isDark = !isDark;
+            if (savedTheme === 'dark') isDark = true;
+            if (savedTheme === 'light') isDark = false;
+
             setTheme(isDark);
-          });
-        });
 
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-          if (!localStorage.getItem('theme')) {
-            isDark = e.matches;
-            setTheme(isDark);
-          }
-        });
-      }
+            document.querySelectorAll('.theme-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    isDark = !isDark;
+                    setTheme(isDark);
+                });
+            });
+        }
 
-      initThemeToggle();
+        initThemeToggle();
     })();
 </script>
+
 

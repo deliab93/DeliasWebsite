@@ -41,7 +41,7 @@
           }
 
           .footer-description {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-bottom: var(--spacing-6);
 
             [data-theme="dark"] & {
@@ -54,7 +54,7 @@
             gap: var(--spacing-4);
 
             a {
-              color: var(--text-muted);
+              color: var(--text-secondary);
               transition: color 0.3s ease;
 
               &:hover {
@@ -94,7 +94,7 @@
           gap: var(--spacing-3);
 
           a {
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: color 0.3s ease;
 
@@ -115,7 +115,7 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-2);
-            color: var(--text-muted);
+            color: var(--text-secondary);
 
             [data-theme="dark"] & {
               color: rgb(156, 163, 175);

@@ -2,10 +2,10 @@
 @using Umbraco.Cms.Web.Common.PublishedModels
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<SocialMediaItem>>
 @{
-    var link = Model.Content.Url;
+    var link = Model?.Content?.Url;
     var icon = Model?.Content?.IconPicker;
 
 }
-<a href="@link?.Url" target="@link?.Target" rel="noopener noreferrer" aria-label="@link.Name">
+<a href="@link?.Url" target="@link?.Target" rel="noopener noreferrer" aria-label="@link?.Name">
     <i class="@icon"></i>
 </a>

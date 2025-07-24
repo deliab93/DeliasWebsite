@@ -1,17 +1,17 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<BlockListItem<Card>>
 @{
-    var content = Model.Content;
-    var filters = content.Filters;
+    var content = Model?.Content;
+    var filters = content?.Filters;
     var imageUrl = content?.Image?.Url() + "&format=webp";
     var tagNamesStr = filters != null ? string.Join(",", filters.Select(t => t.Name.ToLower())) : "";
 }
 <div class="card" data-tags="@tagNamesStr">
     <div class="card-image">
-        <img src="@imageUrl" alt="@content.Title" />
+        <img src="@imageUrl" alt="@content?.Title" />
     </div>
     <div class="card-content">
-        <h3 class="card-title">@content.Title</h3>
-        <p class="card-description">@content.Description</p>
+        <h3 class="card-title">@content?.Title</h3>
+        <p class="card-description">@content?.Description</p>
         @if (filters?.Count() > 0)
         {
             <div class="card-technologies">
@@ -22,15 +22,15 @@
             </div>
         }
 
-        @if (content.CardUrl != null || content.GitUrl != null)
+        @if (content?.CardUrl != null || content?.GitUrl != null)
         {
             <div class="card-links">
-                 @if (content.CardUrl != null){                   
-                    <a href="@content.CardUrl" target="_blank">Live Demo 🔗</a>
+                 @if (content?.CardUrl != null){                   
+                    <a href="@content.CardUrl" aria-label="@content.CardUrl.Name" target="_blank">Live Demo 🔗</a>
                  }
-                @if (content.GitUrl != null)
+                @if (content?.GitUrl != null)
                 {
-                    <a href="@content.GitUrl" target="_blank" class="secondary">Source Code 🐙</a>
+                    <a href="@content.GitUrl" aria-label="@content.GitUrl.Name" target="_blank" class="secondary">Source Code 🐙</a>
                 }
              </div>
         }
