@@ -131,6 +131,9 @@
   .search-toggle-form {
     .search-toggle-icon {
       color: var(--dark-text-primary);
+      @media (max-width: 767px) {
+       margin-left: 2.5rem;
+       } 
 
       &:hover {
         color: var(--accent-color);

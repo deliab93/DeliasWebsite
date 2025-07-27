@@ -25,9 +25,20 @@
                     }
                 </nav>              
         }
-            <button class="theme-toggle" aria-label="Toggle theme">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun "><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                        <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
             </button>
+
 
             @await Html.PartialAsync("_Search")
 
@@ -37,9 +48,21 @@
 
 
 
-        <!-- Mobile Menu Toggle -->
         <div class="nav-mobile">
-            <button class="theme-toggle" aria-label="Toggle dark mode"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun "><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></button>
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4"></circle> <path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
 
             <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
                 <span class="menu-icon" style="display: inline;">☰</span>
@@ -71,43 +94,87 @@
 </header>
 
 
-<!-- These scripts handle transparency and mobile nav-->
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuToggle = document.getElementById('menuToggle');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuIcon = menuToggle.querySelector('.menu-icon');
-      const closeIcon = menuToggle.querySelector('.close-icon');
-      let isMenuOpen = false;
+document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = menuToggle.querySelector('.menu-icon');
+    const closeIcon = menuToggle.querySelector('.close-icon');
+    const navbar = document.querySelector('.navbar');
+    let isMenuOpen = false;
+    let originalWasScrolled = false;
 
-      menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', () => {
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen) {
-          mobileMenu.classList.add('open');
-          menuIcon.style.display = 'none';
-          closeIcon.style.display = 'inline';
-          document.body.style.overflow = 'hidden'; 
-        } else {
-          mobileMenu.classList.remove('open');
-          menuIcon.style.display = 'inline';
-          closeIcon.style.display = 'none';
-          document.body.style.overflow = ''; 
-        }
-      });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const toggleButton = document.getElementById("searchToggleButton");
-        const formWrapper = document.getElementById("searchToggleForm");
+            originalWasScrolled = navbar.classList.contains('scrolled');
 
-        toggleButton?.addEventListener("click", function () {
-            formWrapper?.classList.toggle("active");
-            const input = formWrapper?.querySelector(".search-toggle-input");
+            if (originalWasScrolled) {
+                navbar.classList.remove('scrolled');
+                navbar.classList.add('transparent');
+
+                const onTransitionEnd = (event) => {
+                    if (event.propertyName === 'background-color') {
+                        openMenu();
+                        navbar.removeEventListener('transitionend', onTransitionEnd);
+                    }
+                };
+                navbar.addEventListener('transitionend', onTransitionEnd);
+            } else {
+                openMenu();
+            }
+        } else {
+            closeMenu();
+        }
+    });
+
+    function openMenu() {
+        mobileMenu.classList.add('open');
+        menuIcon.style.display = 'none';
+        closeIcon.style.display = 'inline';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        mobileMenu.classList.remove('open');
+        menuIcon.style.display = 'inline';
+        closeIcon.style.display = 'none';
+        document.body.style.overflow = '';
+
+      
+        if (originalWasScrolled) {
+            navbar.classList.add('scrolled');
+        }
+        navbar.classList.remove('transparent');
+
+      
+        document.querySelectorAll('.search-toggle-form.active').forEach(form => {
+            form.classList.remove('active');
+        });
+    }
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".search-toggle-form").forEach(formWrapper => {
+        const toggleButton = formWrapper.querySelector(".search-toggle-icon");
+        const input = formWrapper.querySelector(".search-toggle-input");
+
+        toggleButton?.addEventListener("click", () => {
+            formWrapper.classList.toggle("active");
             if (formWrapper.classList.contains("active")) {
                 input?.focus();
             }
         });
+
+        formWrapper.querySelector("form")?.addEventListener("submit", () => {
+            formWrapper.classList.remove("active");
+        });
     });
+});
 </script>
+
+

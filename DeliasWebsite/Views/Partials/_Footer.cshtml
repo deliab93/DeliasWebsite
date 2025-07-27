@@ -9,10 +9,10 @@
         <div class="footer-content">
             <div class="footer-grid">
 
-                <!-- Brand & Social -->
+           
                 <div class="footer-section brand">
                     <div class="footer-logo">
-                        <a href="@site.Url()"><span class="highlight">Delias</span>Portfolio</a>
+                        <a href="@site?.Url()"><span class="highlight">Delias</span>Portfolio</a>
                     </div>
                     @if (!string.IsNullOrEmpty(site?.Description))
                     {
@@ -39,7 +39,7 @@
 
                 </div>
 
-                <!-- Quick Links -->
+               
                 @if (site?.QuickLinks != null)
                 {
                     <div class="footer-section">
@@ -61,7 +61,7 @@
                         <div class="footer-links">
                             @foreach(var link in site?.Services)
                             {
-                                <a href="#">@link</a>
+                                <a href="#" area-label="@link">@link</a>
                             }                            
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 }
 
 
-                <!-- Contact Info -->
+              
                 <div class="footer-section">
                     <h3 class="footer-title">Contact</h3>
                     <div class="footer-links">
@@ -92,7 +92,7 @@
 
             </div>
 
-            <!-- Footer Bottom -->
+        
             <div class="footer-bottom">
                 <p class="copyright">
                     © @year DeliasPortfolio. Made with

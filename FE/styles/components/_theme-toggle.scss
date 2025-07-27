@@ -15,9 +15,21 @@
     outline: none;
   }
 
+  .icon-moon {
+    display: none;
+  }
+
   [data-theme="dark"] & {
     background-color: rgb(31, 41, 55);
     color: rgb(209, 213, 219);
+
+    .icon-sun {
+      display: none;
+    }
+
+    .icon-moon {
+      display: inline;
+    }
 
     &:hover {
       background-color: rgb(55, 65, 81);
