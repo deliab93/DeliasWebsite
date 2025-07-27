@@ -19,7 +19,25 @@ builder.Services.AddControllersWithViews()
     .AddApplicationPart(typeof(SitemapController).Assembly);
 builder.Services.AddScoped<ISearchService, SearchService>();
 builder.Services.AddSingleton<ISitemapXmlBuilder, SitemapXmlBuilder>();
-builder.Services.AddImageSharp();
+
+builder.Services.AddImageSharp(options =>
+{
+    options.BrowserMaxAge = TimeSpan.FromDays(30);
+    options.CacheMaxAge = TimeSpan.FromDays(365);
+
+    options.OnParseCommandsAsync = context =>
+    {
+        var path = context.Context.Request.Path.Value ?? string.Empty;
+
+        if (!path.StartsWith("/media", StringComparison.OrdinalIgnoreCase))
+        {
+            context.Commands.Clear(); 
+        }
+
+        return Task.CompletedTask;
+    };
+});
+
 builder.Services.Configure<UmbracoRequestOptions>(options =>
 {
     string[] allowList = new[] { "/sitemap.xml", "/robots.txt" };
@@ -77,5 +95,6 @@ app.UseUmbraco()
         u.UseWebsiteEndpoints();
     });
 app.UseImageSharp();
+
 
 await app.RunAsync();
