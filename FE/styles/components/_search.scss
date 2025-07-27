@@ -74,7 +74,7 @@
   }
 
   &:hover {
-    color: #60a5fa; // light blue hover
+    color: #60a5fa; 
   }
 }
 .search-toggle-form {
@@ -126,7 +126,7 @@
   }
 }
 
-// Dark theme override (optional, since you use CSS variables)
+
 [data-theme="dark"] {
   .search-toggle-form {
     .search-toggle-icon {
