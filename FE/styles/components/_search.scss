@@ -1,5 +1,5 @@
 .search-results {
-  background-color:var(--bg-primary);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
   padding: 6rem 2rem;
   min-height: 100vh;
@@ -10,10 +10,29 @@
     margin-bottom: 3rem;
   }
 
-  &__query {
-    background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+  .btn {
+       background: linear-gradient(to right, #1e40af, #6d28d9, #be185d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    [data-theme="dark"] & {
+      background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__query {
+    background: linear-gradient(to right, #1e40af, #6d28d9, #be185d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    [data-theme="dark"] & {
+      background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
   }
 
   &__empty {
@@ -56,12 +75,13 @@
   }
 
   &__excerpt {
-    color: #d1d5db;
+    color: var(--text-primary);
     font-size: 1rem;
     line-height: 1.6;
   }
 }
- .search-form__button {
+
+.search-form__button {
   background: none;
   border: none;
   color: white;
@@ -74,9 +94,10 @@
   }
 
   &:hover {
-    color: #60a5fa; 
+    color: #60a5fa;
   }
 }
+
 .search-toggle-form {
   display: flex;
   align-items: center;
@@ -131,9 +152,10 @@
   .search-toggle-form {
     .search-toggle-icon {
       color: var(--dark-text-primary);
+
       @media (max-width: 767px) {
-       margin-left: 2.5rem;
-       } 
+        margin-left: 2.5rem;
+      }
 
       &:hover {
         color: var(--accent-color);

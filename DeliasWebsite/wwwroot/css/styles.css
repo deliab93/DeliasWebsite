@@ -1917,7 +1917,22 @@
   font-weight: 700;
   margin-bottom: 3rem;
 }
+.search-results .btn {
+  background: linear-gradient(to right, #1e40af, #6d28d9, #be185d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme=dark] .search-results .btn {
+  background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .search-results__query {
+  background: linear-gradient(to right, #1e40af, #6d28d9, #be185d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme=dark] .search-results__query {
   background: linear-gradient(to right, #60a5fa, #a78bfa, #f472b6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1955,7 +1970,7 @@
   margin-bottom: 0.5rem;
 }
 .search-results__excerpt {
-  color: #d1d5db;
+  color: var(--text-primary);
   font-size: 1rem;
   line-height: 1.6;
 }

@@ -6,8 +6,14 @@
     var hero = content;
     var root = Umbraco.AssignedContentItem.Root() as Home;
     var socials = root?.SocialMediaItems;
+    var hideScrollDownButton = content.HideScrollDownButton;
+    var styleClass = string.Empty;
+    if (hideScrollDownButton)
+    {
+        styleClass = "min-height :0;";
+    }
 }
-<section id="home" class="hero" style="--hero-bg-image: url('@backgroundImage')">
+<section id="home" class="hero" style="--hero-bg-image: url('@backgroundImage'); @styleClass">
     <div class="hero-bg"></div>
 
     <div class="container">
@@ -92,7 +98,7 @@
         </div>
 
      
-        @if (!content.HideScrollDownButton)
+        @if (!hideScrollDownButton)
         {
             <div class="scroll-indicator">
                 <a href="#about">

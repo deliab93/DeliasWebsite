@@ -56,7 +56,7 @@
 @Html.GetBlockListHtml(Model?.RenderComponents)
 <div class="search-results">
     <div class="container">
-        <h1 class="search-results__title">
+        <h1 class="search-results__title">Results: 
             @totalRecords result@(totalRecords != 1 ? "s" : "") for
             <span class="search-results__query">"@query"</span>
         </h1>
@@ -74,12 +74,8 @@
                             <a class="search-results__link" href="@result?.Url()">@pageTitle</a>
                         </h3>
                         <p class="search-results__excerpt">@summary</p>
-                        <a href="@result?.Url()" aria-label="@result?.Name" class="btn btn--sunrise search-results__button">
-                            Find out more
-                            <svg class="stroke-current" width="17" height="17" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.61816 8.55273H14.142" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-                                <path d="M9.42676 4.05273L14.141 8.55273L9.42676 13.0527" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
+                        <a href="@result?.Url()" aria-label="@result?.Name" class="btn">
+                            Find out more ▷
                         </a>
                     </li>
                 }
