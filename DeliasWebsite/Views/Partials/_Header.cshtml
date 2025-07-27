@@ -101,65 +101,64 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuIcon = menuToggle.querySelector('.menu-icon');
-    const closeIcon = menuToggle.querySelector('.close-icon');
-    const navbar = document.querySelector('.navbar');
-    let isMenuOpen = false;
-    let originalWasScrolled = false;
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = menuToggle?.querySelector('.menu-icon');
+        const closeIcon = menuToggle?.querySelector('.close-icon');
+        const navbar = document.querySelector('.navbar');
 
-    menuToggle.addEventListener('click', () => {
-        isMenuOpen = !isMenuOpen;
+        let isMenuOpen = false;
+        let originalWasScrolled = false;
 
-        if (isMenuOpen) {
-            originalWasScrolled = navbar.classList.contains('scrolled');
+        if (!menuToggle || !mobileMenu || !menuIcon || !closeIcon || !navbar) {
+            console.warn("Menu elements not found. JS may not work.");
+            return;
+        }
+
+        menuToggle.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+
+            if (isMenuOpen) {
+                originalWasScrolled = navbar.classList.contains('scrolled');
+
+                if (originalWasScrolled) {
+                    navbar.classList.remove('scrolled');
+                    navbar.classList.add('transparent');
+
+                    // iOS Safari fix: avoid transitionend and use timeout
+                    setTimeout(openMenu, 300);
+                } else {
+                    openMenu();
+                }
+            } else {
+                closeMenu();
+            }
+        });
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            menuIcon.style.display = 'none';
+            closeIcon.style.display = 'inline';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            menuIcon.style.display = 'inline';
+            closeIcon.style.display = 'none';
+            document.body.style.overflow = '';
 
             if (originalWasScrolled) {
-                navbar.classList.remove('scrolled');
-                navbar.classList.add('transparent');
-
-                const onTransitionEnd = (event) => {
-                    if (event.propertyName === 'background-color') {
-                        openMenu();
-                        navbar.removeEventListener('transitionend', onTransitionEnd);
-                    }
-                };
-                navbar.addEventListener('transitionend', onTransitionEnd);
-            } else {
-                openMenu();
+                navbar.classList.add('scrolled');
             }
-        } else {
-            closeMenu();
+            navbar.classList.remove('transparent');
+
+            document.querySelectorAll('.search-toggle-form.active').forEach(form => {
+                form.classList.remove('active');
+            });
         }
     });
-
-    function openMenu() {
-        mobileMenu.classList.add('open');
-        menuIcon.style.display = 'none';
-        closeIcon.style.display = 'inline';
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenu() {
-        mobileMenu.classList.remove('open');
-        menuIcon.style.display = 'inline';
-        closeIcon.style.display = 'none';
-        document.body.style.overflow = '';
-
-      
-        if (originalWasScrolled) {
-            navbar.classList.add('scrolled');
-        }
-        navbar.classList.remove('transparent');
-
-      
-        document.querySelectorAll('.search-toggle-form.active').forEach(form => {
-            form.classList.remove('active');
-        });
-    }
-});
 </script>
 
 

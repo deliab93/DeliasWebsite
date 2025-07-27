@@ -24,6 +24,8 @@ builder.Services.AddImageSharp(options =>
 {
     options.BrowserMaxAge = TimeSpan.FromDays(30);
     options.CacheMaxAge = TimeSpan.FromDays(365);
+    options.BrowserMaxAge = TimeSpan.FromDays(30);
+
 
     options.OnParseCommandsAsync = context =>
     {
