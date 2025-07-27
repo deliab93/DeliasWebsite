@@ -103,12 +103,5 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("subheader")]
 		public virtual string Subheader => this.Value<string>(_publishedValueFallback, "subheader");
-
-		///<summary>
-		/// Text align
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("textAlign")]
-		public virtual bool TextAlign => this.Value<bool>(_publishedValueFallback, "textAlign");
 	}
 }
