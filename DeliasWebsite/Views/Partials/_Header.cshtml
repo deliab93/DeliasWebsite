@@ -125,14 +125,31 @@
                 if (originalWasScrolled) {
                     navbar.classList.remove('scrolled');
                     navbar.classList.add('transparent');
-
-                    // iOS Safari fix: avoid transitionend and use timeout
-                    setTimeout(openMenu, 300);
+                      mobileMenu.classList.add('open');
+            menuIcon.style.display = 'none';
+            closeIcon.style.display = 'inline';
+            document.body.style.overflow = 'hidden';
+                   
                 } else {
-                    openMenu();
+                     mobileMenu.classList.add('open');
+            menuIcon.style.display = 'none';
+            closeIcon.style.display = 'inline';
+            document.body.style.overflow = 'hidden';
                 }
             } else {
-                closeMenu();
+                 mobileMenu.classList.remove('open');
+            menuIcon.style.display = 'inline';
+            closeIcon.style.display = 'none';
+            document.body.style.overflow = '';
+
+            if (originalWasScrolled) {
+                navbar.classList.add('scrolled');
+            }
+            navbar.classList.remove('transparent');
+
+            document.querySelectorAll('.search-toggle-form.active').forEach(form => {
+                form.classList.remove('active');
+            });
             }
         });
 

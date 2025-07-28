@@ -98,14 +98,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual string SubmissionDate => this.Value<string>(_publishedValueFallback, "submissionDate");
 
 		///<summary>
-		/// Canonical url
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("canonicalUrl")]
-		public virtual string CanonicalUrl => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetCanonicalUrl(this, _publishedValueFallback);
-
-		///<summary>
 		/// Hide From Navigation
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]

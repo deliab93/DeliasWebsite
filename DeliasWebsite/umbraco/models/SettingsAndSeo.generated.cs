@@ -22,11 +22,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 	/// <summary>Settings and Seo</summary>
 	public partial interface ISettingsAndSeo : IPublishedContent
 	{
-		/// <summary>Canonical url</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		string CanonicalUrl { get; }
-
 		/// <summary>Hide From Navigation</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		bool HideFromNavigation { get; }
@@ -86,19 +81,6 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		}
 
 		// properties
-
-		///<summary>
-		/// Canonical url
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("canonicalUrl")]
-		public virtual string CanonicalUrl => GetCanonicalUrl(this, _publishedValueFallback);
-
-		/// <summary>Static getter for Canonical url</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static string GetCanonicalUrl(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "canonicalUrl");
 
 		///<summary>
 		/// Hide From Navigation
