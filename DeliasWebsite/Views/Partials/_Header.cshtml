@@ -70,15 +70,17 @@
             </button>
 
 
-            <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+            <button id="menuOpen" class="menu-toggle" aria-label="Open menu">
                 <span class="menu-icon" style="display: inline;">☰</span>
-                <span class="close-icon" style="display: none;">✖</span>
             </button>
         </div>
     </div>
 
 
     <div class="mobile-menu" id="mobileMenu">
+        <button id="menuClose" class="menu-toggle" aria-label="Close menu">
+            <span class="close-icon" style="display: inline;">✖</span>
+        </button>
         @if (children?.Count > 0 && children != null)
         {
             <nav class="mobile-nav-links">
@@ -101,6 +103,27 @@
 
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const openBtn = document.getElementById('menuOpen');
+  const closeBtn = document.getElementById('menuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  openBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    openBtn.style.display = 'none'; // Hide ☰
+    document.body.style.overflow = 'hidden';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    openBtn.style.display = 'inline-block'; // Show ☰
+    document.body.style.overflow = '';
+  });
+});
+
+</script>
+
+@* <script>
     document.addEventListener('DOMContentLoaded', function () {
         const menuToggle = document.getElementById('menuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
@@ -120,33 +143,29 @@
             isMenuOpen = !isMenuOpen;
 
             if (isMenuOpen) {
-                originalWasScrolled = navbar.classList.contains('scrolled');
-                document.body.style.overflow = 'hidden';
-                if (originalWasScrolled) {
-                    navbar.classList.remove('scrolled');
-                    navbar.classList.add('transparent');
-                      mobileMenu.classList.add('open');
-            menuIcon.style.display = 'none';
-            closeIcon.style.display = 'inline';
-            document.body.style.overflow = 'hidden';
+            //     originalWasScrolled = navbar.classList.contains('scrolled');
+            //     if (originalWasScrolled) {
+            //         navbar.classList.remove('scrolled');
+            //         navbar.classList.add('transparent');
+            //           mobileMenu.classList.add('open');
+            // menuIcon.style.display = 'none';
+            // closeIcon.style.display = 'inline';
+            // document.body.style.overflow = 'hidden';
                    
-                } else {
+                // } else {
                      mobileMenu.classList.add('open');
             menuIcon.style.display = 'none';
             closeIcon.style.display = 'inline';
-            document.body.style.overflow = 'hidden';
-                }
+                //}
             } else {
-                document.body.style.overflow = '';
                  mobileMenu.classList.remove('open');
             menuIcon.style.display = 'inline';
             closeIcon.style.display = 'none';
-            document.body.style.overflow = '';
 
-            if (originalWasScrolled) {
-                navbar.classList.add('scrolled');
-            }
-            navbar.classList.remove('transparent');
+            // if (originalWasScrolled) {
+            //     navbar.classList.add('scrolled');
+            // }
+            // navbar.classList.remove('transparent');
 
             document.querySelectorAll('.search-toggle-form.active').forEach(form => {
                 form.classList.remove('active');
@@ -178,7 +197,7 @@
         }
     });
 </script>
-
+ *@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
