@@ -121,7 +121,7 @@
 
             if (isMenuOpen) {
                 originalWasScrolled = navbar.classList.contains('scrolled');
-
+                document.body.style.overflow = 'hidden';
                 if (originalWasScrolled) {
                     navbar.classList.remove('scrolled');
                     navbar.classList.add('transparent');
@@ -137,6 +137,7 @@
             document.body.style.overflow = 'hidden';
                 }
             } else {
+                document.body.style.overflow = '';
                  mobileMenu.classList.remove('open');
             menuIcon.style.display = 'inline';
             closeIcon.style.display = 'none';
