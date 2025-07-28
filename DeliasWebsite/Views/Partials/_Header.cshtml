@@ -110,94 +110,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   openBtn.addEventListener('click', () => {
     mobileMenu.classList.add('open');
-    openBtn.style.display = 'none'; // Hide ☰
+    openBtn.style.display = 'none';
     document.body.style.overflow = 'hidden';
   });
 
   closeBtn.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
-    openBtn.style.display = 'inline-block'; // Show ☰
+    openBtn.style.display = 'inline-block';
     document.body.style.overflow = '';
   });
 });
 
 </script>
 
-@* <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuIcon = menuToggle?.querySelector('.menu-icon');
-        const closeIcon = menuToggle?.querySelector('.close-icon');
-        const navbar = document.querySelector('.navbar');
-
-        let isMenuOpen = false;
-        let originalWasScrolled = false;
-
-        if (!menuToggle || !mobileMenu || !menuIcon || !closeIcon || !navbar) {
-            console.warn("Menu elements not found. JS may not work.");
-            return;
-        }
-
-        menuToggle.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-
-            if (isMenuOpen) {
-            //     originalWasScrolled = navbar.classList.contains('scrolled');
-            //     if (originalWasScrolled) {
-            //         navbar.classList.remove('scrolled');
-            //         navbar.classList.add('transparent');
-            //           mobileMenu.classList.add('open');
-            // menuIcon.style.display = 'none';
-            // closeIcon.style.display = 'inline';
-            // document.body.style.overflow = 'hidden';
-                   
-                // } else {
-                     mobileMenu.classList.add('open');
-            menuIcon.style.display = 'none';
-            closeIcon.style.display = 'inline';
-                //}
-            } else {
-                 mobileMenu.classList.remove('open');
-            menuIcon.style.display = 'inline';
-            closeIcon.style.display = 'none';
-
-            // if (originalWasScrolled) {
-            //     navbar.classList.add('scrolled');
-            // }
-            // navbar.classList.remove('transparent');
-
-            document.querySelectorAll('.search-toggle-form.active').forEach(form => {
-                form.classList.remove('active');
-            });
-            }
-        });
-
-        function openMenu() {
-            mobileMenu.classList.add('open');
-            menuIcon.style.display = 'none';
-            closeIcon.style.display = 'inline';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMenu() {
-            mobileMenu.classList.remove('open');
-            menuIcon.style.display = 'inline';
-            closeIcon.style.display = 'none';
-            document.body.style.overflow = '';
-
-            if (originalWasScrolled) {
-                navbar.classList.add('scrolled');
-            }
-            navbar.classList.remove('transparent');
-
-            document.querySelectorAll('.search-toggle-form.active').forEach(form => {
-                form.classList.remove('active');
-            });
-        }
-    });
-</script>
- *@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {

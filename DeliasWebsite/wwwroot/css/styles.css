@@ -119,10 +119,6 @@
   border: none;
   color: var(--text-secondary);
   cursor: pointer;
-  padding: var(--spacing-2);
-  display: flex;
-  align-items: center;
-  z-index: 60;
 }
 .navbar .mobile-menu .menu-toggle .close-icon {
   display: none;
@@ -135,12 +131,6 @@
   cursor: pointer;
   color: white;
   font-size: 1.5rem;
-}
-.navbar .mobile-menu .menu-toggle:focus {
-  outline: none;
-}
-.navbar .mobile-menu .menu-toggle:hover {
-  color: var(--primary-color);
 }
 .navbar .mobile-menu.open {
   transform: translateX(0);
