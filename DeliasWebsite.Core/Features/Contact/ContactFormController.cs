@@ -47,7 +47,6 @@ namespace DeliasWebsite.Core.Features.Contact
                 return RedirectToCurrentUmbracoPage();
             }
 
-            // 2. Get the first descendant folder node
             var folderNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out var total)
                            .FirstOrDefault(x => x.ContentType.Alias == "contactSubmissionsFolder");
 
@@ -63,14 +62,13 @@ namespace DeliasWebsite.Core.Features.Contact
 
             if (!ModelState.IsValid)
             {
-                // Return to the current page to display validation errors
+              
                 TempData["scrollToForm"] = true;
                 return CurrentUmbracoPage();
             }
 
             try
             {
-                // Create content node under the parent folder
                 var submissionName = $"Contact from {model.Name} - {DateTime.UtcNow:yyyy-MM-dd HH:mm}";
                 var submission = _contentService.Create(submissionName, submissionsParentId, "contactForm");
 
@@ -89,7 +87,6 @@ namespace DeliasWebsite.Core.Features.Contact
                     false
                 );
 
-                // Specify the emailType parameter to match the method signature
                 await _emailSender.SendAsync(emailMessage, emailType: "ContactFormSubmission");
 
                 TempData["success"] = "Message sent successfully!";
