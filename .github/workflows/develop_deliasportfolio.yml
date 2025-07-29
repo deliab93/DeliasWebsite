@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - deliasportfolio
 
 on:
@@ -10,44 +7,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      id-token: write  # Required for OIDC authentication
+      contents: read   # Required for actions/checkout
 
     steps:
-      - uses: actions/checkout@v4
+      # Step 1: Checkout source code
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Set up .NET Core
+      # Step 2: Setup .NET 8
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      # Step 3: Restore NuGet packages
+      - name: Restore Dependencies
+        run: dotnet restore
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      # Step 4: Build the project
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
 
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v4
-        with:
-          name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+      # Step 5: Publish the project
+      - name: Publish
+        run: dotnet publish --configuration Release --output ./publish
 
-  deploy:
-    runs-on: windows-latest
-    needs: build
-    permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v4
-        with:
-          name: .net-app
-      
+      # Step 6: Login to Azure using OIDC
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -55,11 +44,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_40C4B765D4E2432396E821FF07236B67 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FAEEF6AFD2F04B4296135B333608CDA2 }}
 
+      # Step 7: Deploy to Azure Web App
       - name: Deploy to Azure Web App
-        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'deliasportfolio'
           slot-name: 'Production'
-          package: .
-          
+          package: './publish'
