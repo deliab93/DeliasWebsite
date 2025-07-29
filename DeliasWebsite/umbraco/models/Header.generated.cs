@@ -19,13 +19,13 @@ using Umbraco.Extensions;
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>Header</summary>
-	[PublishedModel("header")]
+	[PublishedModel("Header")]
 	public partial class Header : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		public new const string ModelTypeAlias = "header";
+		public new const string ModelTypeAlias = "Header";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]

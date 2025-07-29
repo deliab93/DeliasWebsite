@@ -19,13 +19,13 @@ using Umbraco.Extensions;
 namespace Umbraco.Cms.Web.Common.PublishedModels
 {
 	/// <summary>RTE Text</summary>
-	[PublishedModel("rTEText")]
-	public partial class RTetext : PublishedElementModel
+	[PublishedModel("RTEText")]
+	public partial class Rtetext : PublishedElementModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		public new const string ModelTypeAlias = "rTEText";
+		public new const string ModelTypeAlias = "RTEText";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
@@ -34,14 +34,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<RTetext, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Rtetext, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public RTetext(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
+		public Rtetext(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
