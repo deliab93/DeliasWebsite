@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.navbar');
   const mobileMenu = document.getElementById('mobileMenu');
 
-    if (mobileMenu.classList.contains('open')) {
+    if (mobileMenu && mobileMenu.classList.contains('open')) {
         return;
     }
 
