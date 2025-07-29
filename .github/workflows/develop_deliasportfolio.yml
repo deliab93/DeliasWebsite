@@ -1,4 +1,4 @@
-name: Build and deploy ASP.Net Core app to Azure Web App - deliasportfolio
+name: Build and Deploy ASP.NET Core App to Azure Web App
 
 on:
   push:
@@ -8,35 +8,40 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions:
-      id-token: write  # Required for OIDC authentication
-      contents: read   # Required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
-      # Step 1: Checkout source code
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # Step 2: Setup .NET 8
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.x'
 
-      # Step 3: Restore NuGet packages
+      - name: Cache NuGet
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Restore Dependencies
         run: dotnet restore
 
-      # Step 4: Build the project
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      # Step 5: Publish the project
       - name: Publish
-        run: dotnet publish --configuration Release --output ./publish
+        run: dotnet publish ./DeliasWebsite/DeliasWebsite.Web.csproj -c Release -o ./publish
 
-      # Step 6: Login to Azure using OIDC
+      - name: Create ZIP Package
+        run: zip -r publish.zip ./publish
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -44,10 +49,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_40C4B765D4E2432396E821FF07236B67 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FAEEF6AFD2F04B4296135B333608CDA2 }}
 
-      # Step 7: Deploy to Azure Web App
-      - name: Deploy to Azure Web App
+      - name: Deploy using ZIP Deploy
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'deliasportfolio'
           slot-name: 'Production'
-          package: './publish'
+          package: './publish.zip'
