@@ -2,7 +2,7 @@
 @{
     var content = Model?.Content;
     var filters = content?.Filters;
-    var imageUrl = content?.Image?.Url() + "&format=webp";
+    var imageUrl = content?.Image?.Url() + "?format=webp";
     var tagNamesStr = filters != null ? string.Join(",", filters.Select(t => t.Name.ToLower())) : "";
 }
 <div class="card" data-tags="@tagNamesStr">
