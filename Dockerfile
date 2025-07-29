@@ -23,8 +23,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/publish .
 
-# Support for both Render and Azure
-# Azure uses port 80, Render injects its own port via $PORT
+
+# Bind to environment port (Render, Railway, etc.)
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 
