@@ -47,7 +47,12 @@
                     formWrapper.style.display = "none";
                     thankYou.style.display = "block";
                 }
+                  window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'contact_form_success'
             });
+            });
+
         </script>
     }
 
