@@ -72,6 +72,14 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual bool HideFromSitemp => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemp(this, _publishedValueFallback);
 
 		///<summary>
+		/// Keywords
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("keywords")]
+		public virtual string Keywords => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetKeywords(this, _publishedValueFallback);
+
+		///<summary>
 		/// Meta description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]

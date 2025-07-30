@@ -10,8 +10,9 @@
     var canonical = Model.Url(mode: UrlMode.Absolute);
     var ogImage = Model.Value<IPublishedContent>("openGraphImage")?.Url();
     var tags = Model.Value<IEnumerable<IPublishedContent>>("tags");
-    string keywords = string.Empty;
-    if(tags != null && tags.Count()>0)
+    string keywords = Model?.Value<string>("keywords") ?? string.Empty;
+
+    if (string.IsNullOrEmpty(keywords) && tags != null && tags.Count() > 0)
     {
         keywords = string.Join(", ", tags.Select(i => i.Name));
     };

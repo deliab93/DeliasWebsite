@@ -30,6 +30,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		bool HideFromSitemp { get; }
 
+		/// <summary>Keywords</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string Keywords { get; }
+
 		/// <summary>Meta description</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
@@ -103,6 +108,19 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		/// <summary>Static getter for Hide from sitemp</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		public static bool GetHideFromSitemp(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "hideFromSitemp");
+
+		///<summary>
+		/// Keywords
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("keywords")]
+		public virtual string Keywords => GetKeywords(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Keywords</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetKeywords(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "keywords");
 
 		///<summary>
 		/// Meta description
