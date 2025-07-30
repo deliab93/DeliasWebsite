@@ -1,7 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Article>
 @{
 	Layout = "~/Views/Master.cshtml"; 
-    var imgUrl = Model?.MainImage?.Url() + "?format=webp";
+    var imgUrl = Model?.MainImage?.GetCropUrl() + "?format=webp";
 }
 <main class="article">
     <header class="article-header">
