@@ -55,11 +55,10 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_40C4B765D4E2432396E821FF07236B67 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FAEEF6AFD2F04B4296135B333608CDA2 }}
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'deliasportfolio'
-          slot-name: 'Production'
-          package: .
+     - name: Deploy to Azure Web App
+  uses: azure/webapps-deploy@v3
+  with:
+    app-name: 'deliasportfolio'
+    slot-name: 'Production'
+    package: ${{ github.workspace }}/.net-app.
           
