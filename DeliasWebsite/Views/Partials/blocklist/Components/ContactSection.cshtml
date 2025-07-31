@@ -1,69 +1,90 @@
 ﻿@model DeliasWebsite.Core.Features.Contact.ContactFormViewModel
 @using DeliasWebsite.Core.Features.Contact
+
 <div id="form-wrapper">
-  
-@using (Html.BeginUmbracoForm<ContactFormController>("Submit", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
+    <form id="contact-form" method="post" action="@Url.Action("Submit", "ContactForm")">
+        @Html.AntiForgeryToken()
 
-    <div class="form-grid">
-        <div class="form-group">
-            <label for="Name">Your Name *</label>
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "John Doe", id = "Name" })
-            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="Name">Your Name *</label>
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "John Doe", id = "Name" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Your Email *</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "you@example.com", id = "Email", type = "email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
         </div>
 
         <div class="form-group">
-            <label for="Email">Your Email *</label>
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "you@example.com", id = "Email", type = "email" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            <label for="Subject">Subject</label>
+            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject", id = "Subject" })
+            @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
         </div>
+
+        <div class="form-group">
+            <label for="Message">Message *</label>
+            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Your message...", id = "Message", rows = "5" })
+            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+        </button>
+
+        <div id="form-error" class="alert alert-danger mt-3" style="display:none;"></div>
+    </form>
+</div>
+
+<div id="thank-you-message" style="display:none;">
+    <div class="alert alert-success">
+        Thank you for getting in touch! I'll get back to you soon. 😊
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="Subject">Subject</label>
-        @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject", id = "Subject" })
-        @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
-    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        const thankYou = document.getElementById("thank-you-message");
+        const formWrapper = document.getElementById("form-wrapper");
+        const errorDiv = document.getElementById("form-error");
 
-    <div class="form-group">
-        <label for="Message">Message *</label>
-        @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Your message...", id = "Message", rows = "5" })
-        @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
-    </div>
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-    <button type="submit" class="submit-btn">
-        <i class="fa-solid fa-paper-plane"></i> Send Message
-    </button>
-   
+            const formData = new FormData(form);
 
-    @if (TempData["success"] != null)
-    {
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const formWrapper = document.getElementById("form-wrapper");
-                const thankYou = document.getElementById("thank-you-message");
-                if (formWrapper && thankYou) {
+            fetch(form.action, {
+                method: "POST",
+                headers: {
+                    "X-Worker-Request": "true" 
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                   
                     formWrapper.style.display = "none";
                     thankYou.style.display = "block";
+
+                   
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        'event': 'contact_form_success'
+                    });
+                } else {
+                    errorDiv.textContent = data.message || "Something went wrong!";
+                    errorDiv.style.display = "block";
                 }
-                  window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'contact_form_success'
+            })
+            .catch(error => {
+                errorDiv.textContent = "Error: " + error.message;
+                errorDiv.style.display = "block";
             });
-            });
-
-        </script>
-    }
-
-    @if (TempData["error"] != null)
-    {
-        <div class="alert alert-danger mt-3">@TempData["error"]</div>
-    }
-}
-  </div>
-      <div id="thank-you-message" style="display:none;">
-        <div class="alert alert-success">
-            Thank you for getting in touch! I'll get back to you soon. 😊
-        </div>
-    </div>
+        });
+    });
+</script>

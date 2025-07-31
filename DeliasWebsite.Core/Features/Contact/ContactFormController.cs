@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Umbraco.Cms.Core.Cache;
-using Umbraco.Cms.Core.Configuration.Models;
 using Umbraco.Cms.Core.Logging;
 using Umbraco.Cms.Core.Mail;
 using Umbraco.Cms.Core.Models.Email;
@@ -37,41 +36,47 @@ namespace DeliasWebsite.Core.Features.Contact
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken]
+        [IgnoreAntiforgeryToken] 
         public async Task<IActionResult> Submit(ContactFormViewModel model)
         {
-            var rootNode = _contentService.GetRootContent().FirstOrDefault();
-            if (rootNode == null)
-            {
-                _logger.LogError("Root node not found.");
-                TempData["error"] = "Unable to process request right now.";
-                return RedirectToCurrentUmbracoPage();
-            }
-
-            var folderNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out var total)
-                           .FirstOrDefault(x => x.ContentType.Alias == "contactSubmissionsFolder");
-
-            if (folderNode == null)
-            {
-                _logger.LogError("Folder node of type 'contactSubmissionsFolder' not found.");
-                TempData["error"] = "Unable to submit your message at this time.";
-                TempData["scrollToForm"] = true;
-                return RedirectToCurrentUmbracoPage();
-            }
-
-            int submissionsParentId = folderNode.Id;
+            bool isApiRequest = Request.Headers.ContainsKey("X-Worker-Request") ||
+                                Request.Headers["X-Requested-With"] == "XMLHttpRequest";
 
             if (!ModelState.IsValid)
             {
-              
+                if (isApiRequest)
+                    return BadRequest(new { success = false, message = "Invalid form data" });
+
                 TempData["scrollToForm"] = true;
                 return CurrentUmbracoPage();
             }
 
             try
             {
+                var rootNode = _contentService.GetRootContent().FirstOrDefault();
+                if (rootNode == null)
+                {
+                    _logger.LogError("Root node not found.");
+                    if (isApiRequest)
+                        return StatusCode(500, new { success = false, message = "Site structure error." });
+
+                    TempData["error"] = "Unable to process request.";
+                    return RedirectToCurrentUmbracoPage();
+                }
+
+             
+                var folderNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out _)
+                    .FirstOrDefault(x => x.ContentType.Alias == "contactSubmissionsFolder");
+
+                if (folderNode == null)
+                {
+                    folderNode = _contentService.Create("Contact Submissions", rootNode.Id, "contactSubmissionsFolder");
+                    _contentService.SaveAndPublish(folderNode);
+                }
+
+          
                 var submissionName = $"Contact from {model.Name} - {DateTime.UtcNow:yyyy-MM-dd HH:mm}";
-                var submission = _contentService.Create(submissionName, submissionsParentId, "contactForm");
+                var submission = _contentService.Create(submissionName, folderNode.Id, "contactForm");
 
                 submission.SetValue("nameFrom", model.Name);
                 submission.SetValue("email", model.Email);
@@ -80,6 +85,7 @@ namespace DeliasWebsite.Core.Features.Contact
                 submission.SetValue("submissionDate", DateTime.UtcNow.ToString("u"));
                 _contentService.SaveAndPublish(submission);
 
+                // Send email
                 var emailMessage = new EmailMessage(
                     from: "deliab93@icloud.com",
                     to: "deliab93@icloud.com",
@@ -90,18 +96,28 @@ namespace DeliasWebsite.Core.Features.Contact
 
                 await _emailSender.SendAsync(emailMessage, emailType: "ContactFormSubmission");
 
+                if (isApiRequest)
+                {
+                    return Ok(new
+                    {
+                        success = true,
+                        message = "Message sent successfully!"
+                    });
+                }
+
                 TempData["success"] = "Message sent successfully!";
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error saving contact form submission.");
-                TempData["scrollToForm"] = true;
+                if (isApiRequest)
+                    return StatusCode(500, new { success = false, message = "Something went wrong." });
+
                 TempData["error"] = "Something went wrong. Please try again.";
             }
 
             TempData["scrollToForm"] = true;
             return RedirectToCurrentUmbracoPage();
         }
-
     }
 }
