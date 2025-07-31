@@ -7,7 +7,7 @@
 @{
     var title = Model.Value<string>("pageTitle") ?? Model.Name;
     var description = Model.Value<string>("metaDescription") ?? string.Empty;
-    var canonical = Model.Url(mode: UrlMode.Absolute);
+    var canonical = Model.Value<string>("canonicalURL") ??  Model.Url(mode: UrlMode.Absolute);
     var ogImage = Model.Value<IPublishedContent>("openGraphImage")?.Url();
     var tags = Model.Value<IEnumerable<IPublishedContent>>("tags");
     string keywords = Model?.Value<string>("keywords") ?? string.Empty;

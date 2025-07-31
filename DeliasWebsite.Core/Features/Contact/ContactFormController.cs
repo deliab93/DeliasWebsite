@@ -37,6 +37,7 @@ namespace DeliasWebsite.Core.Features.Contact
         }
 
         [HttpPost]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Submit(ContactFormViewModel model)
         {
             var rootNode = _contentService.GetRootContent().FirstOrDefault();
