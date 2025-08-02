@@ -1,6 +1,7 @@
 using DeliasWebsite.Core.Features.Contact;
 using DeliasWebsite.Core.Features.Search;
 using DeliasWebsite.Core.Features.Seo;
+using DeliasWebsite.Core.Features.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 using Umbraco.Cms.Core.Services;
@@ -42,7 +43,7 @@ builder.Services.AddImageSharp(options =>
 
 builder.Services.Configure<UmbracoRequestOptions>(options =>
 {
-    string[] allowList = new[] { "/sitemap.xml", "/robots.txt" };
+    string[] allowList = new[] { "/sitemap.xml", "/robots.txt", CookieConsentController.RoutePattern };
     options.HandleAsServerSideRequest = httpRequest =>
     {
         foreach (string route in allowList)
@@ -93,6 +94,14 @@ app.UseUmbraco()
                           Controller = ControllerExtensions.GetControllerName<SitemapController>(),
                           Action = nameof(SitemapController.Index)
                       });
+        u.EndpointRouteBuilder.MapControllerRoute(
+            nameof(CookieConsentController),
+            CookieConsentController.RoutePattern,
+            new
+            {
+                Controller = ControllerExtensions.GetControllerName<CookieConsentController>(),
+                Action = nameof(CookieConsentController.Index)
+            });
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });
