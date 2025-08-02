@@ -11,7 +11,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.11" />
-    <PackageReference Include="Umbraco.Cms" Version="13.9.1" />
     <PackageReference Include="Umbraco.Cms.Core" Version="13.9.1" />
     <PackageReference Include="uSync" Version="13.2.7" />
     <PackageReference Include="uSync.Core" Version="13.2.7" />
