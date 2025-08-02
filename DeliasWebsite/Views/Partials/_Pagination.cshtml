@@ -9,7 +9,7 @@
 @if (Model != null && Model.TotalPages > 1)
 {
     <div class="pagination">
-        <div class="pagination-container">
+        <div class="pagination__container">
 
             @* Previous button *@
             @if (Model.CurrentPage > 1)
@@ -18,12 +18,11 @@
                 ? $"?page={Model.CurrentPage - 1}{(string.IsNullOrEmpty(Model.TagFilter) ? "" : $"&tag={WebUtility.UrlEncode(Model.TagFilter)}")}#articles"
                 : $"?q={query}&p={Model.CurrentPage - 1}";
 
-                <a class="icon rotate" href="@prevUrl" aria-label="Previous page">
-                    <i class="fa-solid fa-chevron-left"></i>
+                <a href="@prevUrl" aria-label="Previous page">
+                    <i class="icon fa-solid fa-chevron-left"></i>
                 </a>
             }
 
-            <ul class="flex gap-4">
                 @for (int i = Model.PaginationStart; i <= Model.PaginationEnd; i++)
                 {
                     var isActive = Model.CurrentPage == i;
@@ -32,18 +31,15 @@
                     ? $"?page={i}{(string.IsNullOrEmpty(Model.TagFilter) ? "" : $"&tag={WebUtility.UrlEncode(Model.TagFilter)}")}#articles"
                     : $"?q={query}&p={i}";
 
-                    <li>
                         @if (isActive)
                         {
                             <span class="current" aria-current="true" aria-label="@ariaLabel">@i</span>
                         }
                         else
                         {
-                            <a class="page-link" href="@pageUrl" aria-label="@ariaLabel">@i</a>
+                            <a href="@pageUrl" aria-label="@ariaLabel">@i</a>
                         }
-                    </li>
                 }
-            </ul>
 
             @* Next button *@
             @if (Model.CurrentPage < Model.TotalPages)
@@ -52,8 +48,8 @@
                 ? $"?page={Model.CurrentPage + 1}{(string.IsNullOrEmpty(Model.TagFilter) ? "" : $"&tag={WebUtility.UrlEncode(Model.TagFilter)}")}#articles"
                 : $"?q={query}&p={Model.CurrentPage + 1}";
 
-                <a class="icon" href="@nextUrl" aria-label="Next page">
-                    <i class="fa-solid fa-chevron-right"></i>
+                <a href="@nextUrl" aria-label="Next page">
+                    <i class="icon fa-solid fa-chevron-right"></i>
                 </a>
             }
 
