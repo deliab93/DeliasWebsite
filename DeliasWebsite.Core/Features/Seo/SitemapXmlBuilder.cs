@@ -66,9 +66,9 @@ namespace DeliasWebsite.Core.Features.Seo
                 return false;
             }
 
-            if (content.HasValue("hideFromSitemp"))
+            if (content.HasValue("hideFromSitemap"))
             {
-                return !content.Value<bool>("hideFromSitemp");
+                return !content.Value<bool>("hideFromSitemap");
             }
 
             return true;

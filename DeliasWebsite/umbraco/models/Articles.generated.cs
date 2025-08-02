@@ -73,11 +73,11 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public virtual bool HideFromNavigation => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromNavigation(this, _publishedValueFallback);
 
 		///<summary>
-		/// Hide from sitemp
+		/// Hide from sitemap
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("hideFromSitemp")]
-		public virtual bool HideFromSitemp => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemp(this, _publishedValueFallback);
+		[ImplementPropertyType("hideFromSitemap")]
+		public virtual bool HideFromSitemap => global::Umbraco.Cms.Web.Common.PublishedModels.SettingsAndSeo.GetHideFromSitemap(this, _publishedValueFallback);
 
 		///<summary>
 		/// Keywords

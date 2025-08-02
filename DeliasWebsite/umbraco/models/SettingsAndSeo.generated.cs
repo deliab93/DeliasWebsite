@@ -31,9 +31,9 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
 		bool HideFromNavigation { get; }
 
-		/// <summary>Hide from sitemp</summary>
+		/// <summary>Hide from sitemap</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		bool HideFromSitemp { get; }
+		bool HideFromSitemap { get; }
 
 		/// <summary>Keywords</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
@@ -117,15 +117,15 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		public static bool GetHideFromNavigation(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "hideFromNavigation");
 
 		///<summary>
-		/// Hide from sitemp
+		/// Hide from sitemap
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		[ImplementPropertyType("hideFromSitemp")]
-		public virtual bool HideFromSitemp => GetHideFromSitemp(this, _publishedValueFallback);
+		[ImplementPropertyType("hideFromSitemap")]
+		public virtual bool HideFromSitemap => GetHideFromSitemap(this, _publishedValueFallback);
 
-		/// <summary>Static getter for Hide from sitemp</summary>
+		/// <summary>Static getter for Hide from sitemap</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "13.9.1+28570b4")]
-		public static bool GetHideFromSitemp(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "hideFromSitemp");
+		public static bool GetHideFromSitemap(ISettingsAndSeo that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "hideFromSitemap");
 
 		///<summary>
 		/// Keywords
