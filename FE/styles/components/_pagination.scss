@@ -39,8 +39,9 @@
 
     .current {
       background-color: var(--accent-color);
-      color: var(--bg-primary);
       font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: underline;
     }
 
     .icon {
@@ -67,7 +68,7 @@
 
       .current {
         background-color: var(--accent-hover);
-        color: var(--dark-text-primary);
+        color: var(--primary-color);
       }
 
       .icon {
