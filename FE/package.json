@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "sass": "sass styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css --no-source-map",
-  "copy": "copyfiles -u 1 scripts/*.js ../DeliasWebsite/wwwroot/js",
+  "sass": "node node_modules/sass/sass.js styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css --no-source-map",
+  "copy": "node node_modules/copyfiles/copyfiles -u 1 scripts/*.js ../DeliasWebsite/wwwroot/js",
   "build": "npm run sass && npm run copy",
-  "watch": "sass --watch styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css"
+  "watch": "node node_modules/sass/sass.js --watch styles/main.scss ../DeliasWebsite/wwwroot/css/styles.css"
 
   },
   "keywords": [],
