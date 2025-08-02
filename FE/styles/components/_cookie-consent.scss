@@ -1,0 +1,74 @@
+@use '../variables' as *;
+
+.cookie-consent {
+  padding: $spacing-6 0;
+}
+
+.cookie-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: $spacing-4;
+}
+
+.cookie-table th,
+.cookie-table td {
+  border: 1px solid $border-color;
+  padding: $spacing-2;
+  text-align: left;
+}
+
+.cookie-table th {
+  background-color: $bg-secondary;
+}
+
+:root[data-theme='dark'] .cookie-table th,
+:root[data-theme='dark'] .cookie-table td {
+  border-color: $dark-border-color;
+}
+
+:root[data-theme='dark'] .cookie-table th {
+  background-color: $dark-bg-secondary;
+}
+
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $bg-secondary;
+  padding: $spacing-4;
+  box-shadow: $shadow-md;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+  z-index: 100;
+
+  &.hidden {
+    display: none;
+  }
+
+  .cookie-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-2;
+
+    .btn-primary {
+      background-color: $primary-color;
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background-color: $bg-tertiary;
+      color: $text-primary;
+    }
+  }
+}
+
+:root[data-theme='dark'] .cookie-banner {
+  background-color: $dark-bg-secondary;
+
+  .btn-secondary {
+    background-color: $dark-bg-tertiary;
+    color: $dark-text-primary;
+  }
+}
