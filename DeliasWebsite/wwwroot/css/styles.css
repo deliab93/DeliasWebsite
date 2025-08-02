@@ -2252,6 +2252,18 @@
   padding: 1.5rem 0;
 }
 
+.consent-selection {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.consent-selection label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .cookie-table {
   width: 100%;
   border-collapse: collapse;
