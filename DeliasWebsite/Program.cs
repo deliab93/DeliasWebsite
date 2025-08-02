@@ -1,7 +1,6 @@
 using DeliasWebsite.Core.Features.Contact;
 using DeliasWebsite.Core.Features.Search;
 using DeliasWebsite.Core.Features.Seo;
-using DeliasWebsite.Core.Features.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using SixLabors.ImageSharp.Web.DependencyInjection;
 using Umbraco.Cms.Core.Services;
@@ -43,14 +42,7 @@ builder.Services.AddImageSharp(options =>
 
 builder.Services.Configure<UmbracoRequestOptions>(options =>
 {
-    string[] allowList = new[]
-    {
-        "/sitemap.xml",
-        "/robots.txt",
-        CookieConsentController.RoutePattern,
-        CookieConsentController.RoutePattern + "/accept",
-        CookieConsentController.RoutePattern + "/decline"
-    };
+    string[] allowList = new[] { "/sitemap.xml", "/robots.txt" };
     options.HandleAsServerSideRequest = httpRequest =>
     {
         foreach (string route in allowList)
@@ -101,30 +93,6 @@ app.UseUmbraco()
                           Controller = ControllerExtensions.GetControllerName<SitemapController>(),
                           Action = nameof(SitemapController.Index)
                       });
-        u.EndpointRouteBuilder.MapControllerRoute(
-            nameof(CookieConsentController),
-            CookieConsentController.RoutePattern,
-            new
-            {
-                Controller = ControllerExtensions.GetControllerName<CookieConsentController>(),
-                Action = nameof(CookieConsentController.Index)
-            });
-        u.EndpointRouteBuilder.MapControllerRoute(
-            "CookieConsentAccept",
-            CookieConsentController.RoutePattern + "/accept",
-            new
-            {
-                Controller = ControllerExtensions.GetControllerName<CookieConsentController>(),
-                Action = nameof(CookieConsentController.Accept)
-            });
-        u.EndpointRouteBuilder.MapControllerRoute(
-            "CookieConsentDecline",
-            CookieConsentController.RoutePattern + "/decline",
-            new
-            {
-                Controller = ControllerExtensions.GetControllerName<CookieConsentController>(),
-                Action = nameof(CookieConsentController.Decline)
-            });
         u.UseBackOfficeEndpoints();
         u.UseWebsiteEndpoints();
     });
