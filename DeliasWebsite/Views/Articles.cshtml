@@ -1,22 +1,60 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Articles>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Articles>
+@using DeliasWebsite.Core.Features.Search
 @{
     Layout = "~/Views/Master.cshtml";
-    var posts = Model.Children()
-         .Where(x => x.ContentType.Alias == "article")
-         .OrderByDescending(x => x.Value<DateTime>("postDate"));
 
-    var allTags = posts
-                    .SelectMany(post => post.Value<IEnumerable<IPublishedContent>>("tags") ?? Enumerable.Empty<IPublishedContent>())
-                     .GroupBy(tag => tag.Name)
-                      .Select(group => group.First())
-                        .ToList();
+    var allPosts = Model.Children()
+        .Where(x => x.ContentType.Alias == "article")
+        .OrderByDescending(x => x.Value<DateTime>("postDate"));
 
+    string? pageQuery = Context.Request.Query["page"];
+    int currentPage = int.TryParse(pageQuery, out int cp) ? cp : 1;
+    int pageSize = 12;
+    int totalRecords = allPosts.Count();
+    int totalPages = (int)Math.Ceiling((decimal)totalRecords / pageSize);
+    int skip = pageSize * (currentPage - 1);
+    var posts = allPosts.Skip(skip).Take(pageSize);
+
+    int paginationItems = 4;
+    int offset = (int)Math.Ceiling((decimal)paginationItems / 2);
+    int paginationStart = Math.Max(1, currentPage - offset);
+    int paginationEnd = Math.Min(totalPages, currentPage + offset);
+
+    if (paginationEnd - paginationStart < paginationItems)
+    {
+        if (paginationStart == 1)
+        {
+            paginationEnd = Math.Min(paginationItems, totalPages);
+        }
+        else if (paginationEnd == totalPages)
+        {
+            paginationStart = Math.Max(1, totalPages - paginationItems + 1);
+        }
+    }
+
+    var allTags = allPosts
+        .SelectMany(post => post.Value<IEnumerable<IPublishedContent>>("tags") ?? Enumerable.Empty<IPublishedContent>())
+        .GroupBy(tag => tag.Name)
+        .Select(group => group.First())
+        .ToList();
+
+    var pagination = new Pagination
+    {
+        CurrentPage = currentPage,
+        PageSize = pageSize,
+        PaginationStart = paginationStart,
+        PaginationEnd = paginationEnd,
+        Skip = skip,
+        TotalPages = totalPages,
+        TotalRecords = totalRecords,
+        PageType = "articles"
+    };
 }
 @Html.GetBlockListHtml(Model?.RenderComponents)
 
-<section class="cards">
+<section class="cards" id="articles">
     <div class="container">
-      
+
         @if (allTags != null && allTags?.Count() > 0)
         {
             <div class="filter-buttons">
@@ -40,7 +78,7 @@
                 var tags = post.Value<IEnumerable<IPublishedContent>>("tags");
                 var tagNamesStr = tags != null ? string.Join(",", tags.Select(t => t.Name.ToLower())) : "";
 
-                        <div class="card" data-tags="@tagNamesStr">
+                <div class="card" data-tags="@tagNamesStr">
                     @if (!imageUrl.IsNullOrWhiteSpace())
                     {
                         <div class="card-image">
@@ -58,6 +96,7 @@
                         {
                             <p class="card-description">@postDescription</p>
                         }
+        
                         @if (tags != null && tags.Any())
                         {
                             <div class="card-technologies">
@@ -77,6 +116,11 @@
                 </div>
             }
         </div>
+
+        @if (totalPages > 1)
+        {
+            @await Html.PartialAsync("_Pagination", pagination)
+        }
     </div>
 </section>
 <script>
@@ -88,11 +132,9 @@
             button.addEventListener("click", () => {
                 const filter = button.getAttribute("data-filter");
 
-                
                 filterButtons.forEach(btn => btn.classList.remove("active"));
                 button.classList.add("active");
 
-               
                 cards.forEach(card => {
                     const tags = card.getAttribute("data-tags").toLowerCase().split(",");
                     const show = filter === "all" || tags.includes(filter.toLowerCase());
@@ -102,4 +144,3 @@
         });
     });
 </script>
-
