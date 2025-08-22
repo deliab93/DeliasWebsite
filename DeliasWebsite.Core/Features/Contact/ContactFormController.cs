@@ -9,6 +9,7 @@ using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Persistence;
 using Umbraco.Cms.Web.Website.Controllers;
+using Umbraco.Extensions;
 
 namespace DeliasWebsite.Core.Features.Contact
 {
@@ -36,7 +37,7 @@ namespace DeliasWebsite.Core.Features.Contact
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken] 
+        [ValidateAntiForgeryToken] 
         public async Task<IActionResult> Submit(ContactFormViewModel model)
         {
             bool isApiRequest = Request.Headers.ContainsKey("X-Worker-Request") ||
@@ -94,16 +95,19 @@ namespace DeliasWebsite.Core.Features.Contact
                     false
                 );
 
-                await _emailSender.SendAsync(emailMessage, emailType: "ContactFormSubmission");
+               await _emailSender.SendAsync(emailMessage, emailType: "ContactFormSubmission");
 
                 if (isApiRequest)
                 {
                     return Ok(new
                     {
                         success = true,
-                        message = "Message sent successfully!"
+                        message = "Message sent successfully!",
                     });
                 }
+                var successPageNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out _)
+                       .FirstOrDefault(x => x.Name.InvariantContains("success"));
+                return RedirectToUmbracoPage(successPageNode.Key);
 
                 TempData["success"] = "Message sent successfully!";
             }

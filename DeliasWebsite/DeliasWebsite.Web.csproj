@@ -5,17 +5,7 @@
     <Nullable>enable</Nullable>
     <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
   </PropertyGroup>
-  <ItemGroup>
-    <Content Include="wwwroot\media\25hoctvl\pexels-pixabay-38547.jpg" />
-    <Content Include="wwwroot\media\c4lgbmv0\pexels-luis-gomes-166706-546819.jpg" />
-    <Content Include="wwwroot\media\hfvo4vrw\pexels-luis-gomes-166706-546819.jpg" />
-    <Content Include="wwwroot\media\hnxlave2\pexels-cookiecutter-1148820.jpg" />
-    <Content Include="wwwroot\media\iz5phmuj\pexels-pixabay-356056.jpg" />
-    <Content Include="wwwroot\media\l5uh3t2t\dff29c47-514d-446a-a1ac-57995c6293c2.jpeg" />
-    <Content Include="wwwroot\media\ljxnk2nd\pexels-photo-2379004.jpeg" />
-    <Content Include="wwwroot\media\llglzwl2\pexels-divinetechygirl-1181325.jpg" />
-    <Content Include="wwwroot\media\xouppmhp\pexels-ron-lach-97575563.jpg" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="SixLabors.ImageSharp.Web" Version="3.1.5" />
@@ -34,10 +24,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\js\" />  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\media\4ttnrqlv\oip.webp" />
-  </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\DeliasWebsite.Core\DeliasWebsite.Core.csproj" />

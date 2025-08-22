@@ -1,90 +1,84 @@
 ﻿@model DeliasWebsite.Core.Features.Contact.ContactFormViewModel
 @using DeliasWebsite.Core.Features.Contact
+@using Umbraco.Cms.Core.Web
+@using Umbraco.Cms.Web.Common
+@inject UmbracoHelper UmbracoHelper
+@inject IUmbracoContextAccessor UmbracoContextAccessor
 
-<div id="form-wrapper">
-    <form id="contact-form" method="post" action="@Url.Action("Submit", "ContactForm")">
-        @Html.AntiForgeryToken()
+@{
+    var current = UmbracoHelper.AssignedContentItem;
+    if (current == null && UmbracoContextAccessor.TryGetUmbracoContext(out var umbCtx))
+        current = umbCtx.PublishedRequest?.PublishedContent;
 
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="Name">Your Name *</label>
-                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "John Doe", id = "Name" })
-                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    var pageName = current?.Name ?? string.Empty;
+
+    var isSuccessPage =
+        (!string.IsNullOrWhiteSpace(pageName) &&
+         pageName.Contains("success", StringComparison.InvariantCultureIgnoreCase))
+        || ((Context?.Request?.Path.Value ?? string.Empty)
+            .Contains("success", StringComparison.InvariantCultureIgnoreCase));
+}
+
+@if (!isSuccessPage)
+{
+    <div id="form-wrapper">
+        @using (Html.BeginUmbracoForm<ContactFormController>(
+            "Submit",
+            new { area = "umbraco" },          // important for routing SurfaceController
+            new { id = "contact-form" }        // keep your styling hooks
+            ))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(excludePropertyErrors: true, message: "", htmlAttributes: new { @class = "text-danger mb-3" })
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="Name">Your Name *</label>
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "John Doe", id = "Name" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    <label for="Email">Your Email *</label>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "you@example.com", id = "Email", type = "email" })
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <div class="form-group">
-                <label for="Email">Your Email *</label>
-                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "you@example.com", id = "Email", type = "email" })
-                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                <label for="Subject">Subject</label>
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject", id = "Subject" })
+                @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="Subject">Subject</label>
-            @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Subject", id = "Subject" })
-            @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
-        </div>
+            <div class="form-group">
+                <label for="Message">Message *</label>
+                @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Your message...", id = "Message", rows = "5" })
+                @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+            </div>
 
-        <div class="form-group">
-            <label for="Message">Message *</label>
-            @Html.TextAreaFor(m => m.Message, new { @class = "form-control", placeholder = "Your message...", id = "Message", rows = "5" })
-            @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
-        </div>
+            <button type="submit" class="submit-btn">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
 
-        <button type="submit" class="submit-btn">
-            <i class="fa-solid fa-paper-plane"></i> Send Message
-        </button>
-
-        <div id="form-error" class="alert alert-danger mt-3" style="display:none;"></div>
-    </form>
-</div>
-
-<div id="thank-you-message" style="display:none;">
-    <div class="alert alert-success">
-        Thank you for getting in touch! I'll get back to you soon. 😊
+          
+        }
     </div>
-</div>
-
+}
+else
+{
+    <div id="thank-you-message" style="display:block;">
+        <div class="alert alert-success">
+            Thank you for getting in touch! I'll get back to you soon. 😊
+        </div>
+    </div>
+}
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("contact-form");
-        const thankYou = document.getElementById("thank-you-message");
-        const formWrapper = document.getElementById("form-wrapper");
-        const errorDiv = document.getElementById("form-error");
-
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: "POST",
-                headers: {
-                    "X-Worker-Request": "true" 
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                   
-                    formWrapper.style.display = "none";
-                    thankYou.style.display = "block";
-
-                   
-                    window.dataLayer = window.dataLayer || [];
-                    window.dataLayer.push({
-                        'event': 'contact_form_success'
-                    });
-                } else {
-                    errorDiv.textContent = data.message || "Something went wrong!";
-                    errorDiv.style.display = "block";
-                }
-            })
-            .catch(error => {
-                errorDiv.textContent = "Error: " + error.message;
-                errorDiv.style.display = "block";
-            });
-        });
+        if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+            window.location.href = window.location.href.split('#')[0];
+        }
     });
 </script>
+
