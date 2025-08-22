@@ -22,11 +22,11 @@
             </div>
         }
 
-        @if (content?.CardUrl != null || content?.GitUrl != null)
+        @if (content?.CardUrl?.Url != null || content?.GitUrl != null)
         {
             <div class="card-links">
-                 @if (content?.CardUrl != null){                   
-                    <a href="@content.CardUrl" aria-label="@content.CardUrl.Name" target="_blank">Live Demo 🔗</a>
+                 @if (content?.CardUrl?.Url != null){                   
+                    <a href="@content.CardUrl?.Url" aria-label="@content?.CardUrl?.Name" target="_blank">Live Demo 🔗</a>
                  }
                 @if (content?.GitUrl != null)
                 {

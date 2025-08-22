@@ -29,7 +29,7 @@ namespace DeliasWebsite.Core.Features.Seo
                             Disallow: /Properties/
                             Disallow: /obj/
                             Disallow: /*.axd
-                            Sitemap: /sitemap.xml/";
+                            Sitemap: https://deliasportfolio.com/sitemap.xml";
 
         private const string NonProdDefaultRobotsTxt =
                                 @"User-agent: *
