@@ -37,7 +37,7 @@ namespace DeliasWebsite.Core.Features.Contact
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] 
+        [IgnoreAntiforgeryToken] 
         public async Task<IActionResult> Submit(ContactFormViewModel model)
         {
             bool isApiRequest = Request.Headers.ContainsKey("X-Worker-Request") ||
