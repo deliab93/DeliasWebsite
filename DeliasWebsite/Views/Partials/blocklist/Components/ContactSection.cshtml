@@ -24,8 +24,8 @@
     <div id="form-wrapper">
         @using (Html.BeginUmbracoForm<ContactFormController>(
             "Submit",
-            new { area = "umbraco" },          // important for routing SurfaceController
-            new { id = "contact-form" }        // keep your styling hooks
+            new { area = "umbraco" },          
+            new { id = "contact-form" }        
             ))
         {
             @Html.AntiForgeryToken()
