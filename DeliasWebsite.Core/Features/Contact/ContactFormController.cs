@@ -45,9 +45,6 @@ namespace DeliasWebsite.Core.Features.Contact
 
             if (!ModelState.IsValid)
             {
-                if (isApiRequest)
-                    return BadRequest(new { success = false, message = "Invalid form data" });
-
                 TempData["scrollToForm"] = true;
                 return CurrentUmbracoPage();
             }
@@ -57,10 +54,6 @@ namespace DeliasWebsite.Core.Features.Contact
                 var rootNode = _contentService.GetRootContent().FirstOrDefault();
                 if (rootNode == null)
                 {
-                    _logger.LogError("Root node not found.");
-                    if (isApiRequest)
-                        return StatusCode(500, new { success = false, message = "Site structure error." });
-
                     TempData["error"] = "Unable to process request.";
                     return RedirectToCurrentUmbracoPage();
                 }
@@ -97,18 +90,15 @@ namespace DeliasWebsite.Core.Features.Contact
 
                await _emailSender.SendAsync(emailMessage, emailType: "ContactFormSubmission");
 
-                if (isApiRequest)
-                {
-                    return Ok(new
-                    {
-                        success = true,
-                        message = "Message sent successfully!",
-                    });
-                }
-                var successPageNode = _contentService.GetPagedChildren(rootNode.Id, 0, 100, out _)
-                       .FirstOrDefault(x => x.Name.InvariantContains("success"));
-                return RedirectToUmbracoPage(successPageNode.Key);
+                var success = _contentService.GetPagedChildren(rootNode.Id, 0, 200, out _)
+            .FirstOrDefault(x => x.Published && x.Name.InvariantContains("success"));
 
+                if (success != null)
+                {
+                    var url = PublishedUrlProvider.GetUrl(success.Key,
+                        Umbraco.Cms.Core.Models.PublishedContent.UrlMode.Auto);
+                    return Redirect(url);
+                }
                 TempData["success"] = "Message sent successfully!";
             }
             catch (Exception ex)
